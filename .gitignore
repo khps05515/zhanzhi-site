@@ -1,0 +1,15 @@
+# 開發工具
+.claude/
+.vscode/
+.idea/
+
+# 系統檔
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# 暫存 / 備份
+*.log
+*.tmp
+*.bak
+*~
