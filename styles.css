@@ -413,6 +413,17 @@ button{font:inherit;cursor:pointer;border:0;background:transparent;color:inherit
 .service__media video{
   width:100%;height:100%;object-fit:cover;
 }
+/* Portrait video in service card — taller container, no crop */
+.service__media.is-portrait{
+  aspect-ratio: 9/12;   /* slightly less extreme than 9/16 to keep card balance */
+}
+.service__media.is-portrait video{
+  object-fit: cover;
+  object-position: center;
+}
+.service__media.is-square{
+  aspect-ratio: 1/1;
+}
 .service__overlay{
   position:absolute;inset:0;
   background: linear-gradient(180deg, transparent 40%, rgba(10,30,63,.6) 100%);
@@ -525,6 +536,15 @@ button{font:inherit;cursor:pointer;border:0;background:transparent;color:inherit
   width:100%;aspect-ratio: 16/9;object-fit:cover;
   background:#000;
   display:block;
+}
+/* Portrait video in showcase — vertical card, no crop */
+.show.is-portrait video{
+  aspect-ratio: 9/16;
+  object-fit: cover;
+}
+.show.is-square video{
+  aspect-ratio: 1/1;
+  object-fit: cover;
 }
 .show figcaption{
   padding:16px 20px 20px;

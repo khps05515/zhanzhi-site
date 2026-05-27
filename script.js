@@ -125,6 +125,27 @@
     });
   });
 
+  /* ---------- Auto-detect video orientation (safety net) ---------- */
+  function applyOrientationClass(video) {
+    const w = video.videoWidth;
+    const h = video.videoHeight;
+    if (!w || !h) return;
+    const target = video.closest('.show') || video.closest('.service__media');
+    if (!target) return;
+    // Strip any prior orientation class then set the correct one
+    target.classList.remove('is-portrait', 'is-square');
+    const r = w / h;
+    if (r < 0.95) target.classList.add('is-portrait');
+    else if (r < 1.05) target.classList.add('is-square');
+  }
+  document.querySelectorAll('.show video, .service__media video').forEach((v) => {
+    if (v.readyState >= 1) {
+      applyOrientationClass(v);
+    } else {
+      v.addEventListener('loadedmetadata', () => applyOrientationClass(v), { once: true });
+    }
+  });
+
   /* ---------- Footer year ---------- */
   const yearEl = document.getElementById('year');
   if (yearEl) yearEl.textContent = new Date().getFullYear();
