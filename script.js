@@ -83,47 +83,109 @@
     }
   });
 
-  /* ---------- Lightbox for showcase videos ---------- */
+  /* ---------- Lightbox (videos + image gallery) ---------- */
   const lightbox = document.getElementById('lightbox');
   const lightboxVideo = document.getElementById('lightboxVideo');
+  const lightboxImage = document.getElementById('lightboxImage');
   const lightboxTitle = document.getElementById('lightboxTitle');
   const lightboxClose = lightbox.querySelector('.lightbox__close');
+  const lightboxPrev = document.getElementById('lightboxPrev');
+  const lightboxNext = document.getElementById('lightboxNext');
 
-  function openLightbox(src, title) {
+  let gallery = [];   // array of {src, alt} for image gallery mode
+  let galleryIdx = 0;
+
+  function openVideoLightbox(src, title) {
+    lightbox.classList.remove('is-image');
+    lightbox.classList.add('is-video');
     lightboxVideo.src = src;
+    lightboxImage.src = '';
     lightboxTitle.textContent = title || '';
     lightbox.classList.add('is-open');
     lightbox.setAttribute('aria-hidden', 'false');
     document.body.style.overflow = 'hidden';
     lightboxVideo.play().catch(() => {});
   }
+
+  function openImageLightbox(items, startIdx) {
+    gallery = items;
+    galleryIdx = startIdx;
+    lightbox.classList.remove('is-video');
+    lightbox.classList.add('is-image');
+    lightboxVideo.pause();
+    lightboxVideo.src = '';
+    renderGalleryFrame();
+    lightbox.classList.add('is-open');
+    lightbox.setAttribute('aria-hidden', 'false');
+    document.body.style.overflow = 'hidden';
+  }
+
+  function renderGalleryFrame() {
+    if (!gallery.length) return;
+    const it = gallery[galleryIdx];
+    lightboxImage.src = it.src;
+    lightboxImage.alt = it.alt || '';
+    lightboxTitle.textContent = `${galleryIdx + 1} / ${gallery.length}`;
+  }
+
+  function navGallery(delta) {
+    if (!gallery.length) return;
+    galleryIdx = (galleryIdx + delta + gallery.length) % gallery.length;
+    renderGalleryFrame();
+  }
+
   function closeLightbox() {
-    lightbox.classList.remove('is-open');
+    lightbox.classList.remove('is-open', 'is-image', 'is-video');
     lightbox.setAttribute('aria-hidden', 'true');
     document.body.style.overflow = '';
     lightboxVideo.pause();
     lightboxVideo.src = '';
+    lightboxImage.src = '';
+    gallery = [];
   }
+
   lightboxClose.addEventListener('click', closeLightbox);
+  lightboxPrev.addEventListener('click', (e) => { e.stopPropagation(); navGallery(-1); });
+  lightboxNext.addEventListener('click', (e) => { e.stopPropagation(); navGallery(1); });
   lightbox.addEventListener('click', (e) => {
-    if (e.target === lightbox) closeLightbox();
+    if (e.target === lightbox || e.target === lightboxImage.parentElement) closeLightbox();
   });
   document.addEventListener('keydown', (e) => {
-    if (e.key === 'Escape' && lightbox.classList.contains('is-open')) closeLightbox();
+    if (!lightbox.classList.contains('is-open')) return;
+    if (e.key === 'Escape') closeLightbox();
+    else if (lightbox.classList.contains('is-image')) {
+      if (e.key === 'ArrowLeft') navGallery(-1);
+      else if (e.key === 'ArrowRight') navGallery(1);
+    }
   });
 
+  /* Showcase videos → open in lightbox */
   document.querySelectorAll('.show').forEach((fig) => {
     const video = fig.querySelector('video');
     const title = fig.dataset.title || '';
     if (!video) return;
     fig.addEventListener('click', (e) => {
-      // Allow native controls when interacting with them
-      if (e.target.tagName === 'VIDEO') return;
+      if (e.target.tagName === 'VIDEO') return; // allow native controls
       e.preventDefault();
       const src = video.querySelector('source')?.src || video.src;
-      openLightbox(src, title);
+      openVideoLightbox(src, title);
     });
   });
+
+  /* Event gallery → open in image-mode lightbox with prev/next */
+  const eventFigures = Array.from(document.querySelectorAll('#eventsGrid .event'));
+  if (eventFigures.length) {
+    const items = eventFigures.map((fig) => {
+      const img = fig.querySelector('img');
+      return { src: img?.src || '', alt: img?.alt || '' };
+    });
+    eventFigures.forEach((fig, idx) => {
+      fig.addEventListener('click', (e) => {
+        e.preventDefault();
+        openImageLightbox(items, idx);
+      });
+    });
+  }
 
   /* ---------- Auto-detect video orientation (safety net) ---------- */
   function applyOrientationClass(video) {

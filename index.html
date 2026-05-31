@@ -34,6 +34,7 @@
       <a href="#services">合作模式</a>
       <a href="#modules">課程模組</a>
       <a href="#showcase">口碑見證</a>
+      <a href="#events">活動剪影</a>
       <a href="#brands">合作品牌</a>
       <a href="#contact" class="nav__cta">立即聯繫</a>
     </nav>
@@ -385,6 +386,43 @@
   </div>
 </section>
 
+<!-- ====== Event Highlights ====== -->
+<section class="section events" id="events">
+  <div class="container">
+    <div class="section__head section__head--center">
+      <span class="kicker">EVENT HIGHLIGHTS</span>
+      <h2 class="section__title">活動<em>剪影</em></h2>
+      <p class="section__lead">企業內訓、團建工作坊、公開課程、主題演講 ─ 棍子帶領學員在現場一起把 AI 學會。</p>
+    </div>
+
+    <div class="events__grid" id="eventsGrid">
+      <figure class="event"><img loading="lazy" src="assets/events/S__159064071_0.jpg" alt="活動剪影 01" /></figure>
+      <figure class="event"><img loading="lazy" src="assets/events/S__159064072_0.jpg" alt="活動剪影 02" /></figure>
+      <figure class="event"><img loading="lazy" src="assets/events/S__159064073_0.jpg" alt="活動剪影 03" /></figure>
+      <figure class="event"><img loading="lazy" src="assets/events/S__159064074_0.jpg" alt="活動剪影 04" /></figure>
+      <figure class="event"><img loading="lazy" src="assets/events/S__159064075_0.jpg" alt="活動剪影 05" /></figure>
+      <figure class="event"><img loading="lazy" src="assets/events/S__159064076_0.jpg" alt="活動剪影 06" /></figure>
+      <figure class="event"><img loading="lazy" src="assets/events/S__159064077_0.jpg" alt="活動剪影 07" /></figure>
+      <figure class="event"><img loading="lazy" src="assets/events/S__159064078_0.jpg" alt="活動剪影 08" /></figure>
+      <figure class="event"><img loading="lazy" src="assets/events/S__159064079_0.jpg" alt="活動剪影 09" /></figure>
+      <figure class="event"><img loading="lazy" src="assets/events/S__159064080_0.jpg" alt="活動剪影 10" /></figure>
+      <figure class="event"><img loading="lazy" src="assets/events/S__159064082_0.jpg" alt="活動剪影 11" /></figure>
+      <figure class="event"><img loading="lazy" src="assets/events/S__159064083_0.jpg" alt="活動剪影 12" /></figure>
+      <figure class="event"><img loading="lazy" src="assets/events/S__159064084_0.jpg" alt="活動剪影 13" /></figure>
+      <figure class="event"><img loading="lazy" src="assets/events/S__159064085_0.jpg" alt="活動剪影 14" /></figure>
+      <figure class="event"><img loading="lazy" src="assets/events/S__159064086_0.jpg" alt="活動剪影 15" /></figure>
+      <figure class="event"><img loading="lazy" src="assets/events/S__159064087_0.jpg" alt="活動剪影 16" /></figure>
+      <figure class="event"><img loading="lazy" src="assets/events/S__159064088_0.jpg" alt="活動剪影 17" /></figure>
+      <figure class="event"><img loading="lazy" src="assets/events/S__159064089_0.jpg" alt="活動剪影 18" /></figure>
+      <figure class="event"><img loading="lazy" src="assets/events/S__159064090_0.jpg" alt="活動剪影 19" /></figure>
+      <figure class="event"><img loading="lazy" src="assets/events/S__159064091_0.jpg" alt="活動剪影 20" /></figure>
+      <figure class="event"><img loading="lazy" src="assets/events/S__159064093_0.jpg" alt="活動剪影 21" /></figure>
+      <figure class="event"><img loading="lazy" src="assets/events/S__159064094_0.jpg" alt="活動剪影 22" /></figure>
+      <figure class="event"><img loading="lazy" src="assets/events/S__159064095_0.jpg" alt="活動剪影 23" /></figure>
+    </div>
+  </div>
+</section>
+
 <!-- ====== Brands & Process ====== -->
 <section class="section brands" id="brands">
   <div class="container">
@@ -515,11 +553,14 @@
   </div>
 </footer>
 
-<!-- ====== Lightbox for videos ====== -->
+<!-- ====== Lightbox for videos & images ====== -->
 <div class="lightbox" id="lightbox" aria-hidden="true">
   <button class="lightbox__close" aria-label="關閉">×</button>
+  <button class="lightbox__nav lightbox__nav--prev" id="lightboxPrev" aria-label="上一張">‹</button>
+  <button class="lightbox__nav lightbox__nav--next" id="lightboxNext" aria-label="下一張">›</button>
   <div class="lightbox__inner">
     <video id="lightboxVideo" controls playsinline></video>
+    <img id="lightboxImage" alt="" />
     <p class="lightbox__title" id="lightboxTitle"></p>
   </div>
 </div>

@@ -555,6 +555,61 @@ button{font:inherit;cursor:pointer;border:0;background:transparent;color:inherit
 .show figcaption small{font-size:12.5px;color:rgba(255,255,255,.65);letter-spacing:.04em}
 
 /* =================================================
+   Event Highlights ─ Masonry Gallery
+   ================================================= */
+.events{background: var(--bg-paper); position:relative}
+.events__grid{
+  /* CSS columns gives true masonry that respects each image's aspect ratio */
+  column-count: 4;
+  column-gap: 16px;
+}
+@media (max-width: 1100px){ .events__grid{ column-count: 3 } }
+@media (max-width: 720px){  .events__grid{ column-count: 2 } }
+@media (max-width: 420px){  .events__grid{ column-count: 1 } }
+
+.event{
+  margin: 0 0 16px;
+  break-inside: avoid;
+  border-radius: var(--radius-sm);
+  overflow:hidden;
+  background:#fff;
+  border: 1px solid var(--line);
+  box-shadow: var(--shadow-sm);
+  cursor: pointer;
+  position: relative;
+  transition: transform .35s ease, box-shadow .35s ease;
+}
+.event:hover{
+  transform: translateY(-4px);
+  box-shadow: var(--shadow-md);
+}
+.event::after{
+  content:"";position:absolute;inset:0;
+  background: linear-gradient(180deg, transparent 65%, rgba(10,30,63,.55) 100%);
+  opacity:0;transition: opacity .3s ease;
+  pointer-events:none;
+}
+.event::before{
+  content:"⤢";
+  position:absolute;top:14px;right:14px;
+  width:36px;height:36px;border-radius:50%;
+  background: rgba(255,255,255,.92);
+  color: var(--brand);
+  font-size:18px;font-weight:700;
+  display:grid;place-items:center;
+  opacity:0;transform: scale(.7);
+  transition: opacity .3s ease, transform .3s ease;
+  z-index:2;pointer-events:none;
+}
+.event:hover::after,
+.event:hover::before{ opacity:1; transform: scale(1) }
+.event img{
+  width:100%; height:auto; display:block;
+  transition: transform .6s ease;
+}
+.event:hover img{ transform: scale(1.04) }
+
+/* =================================================
    Brands marquee
    ================================================= */
 .brands{background: var(--bg-cream)}
@@ -726,17 +781,31 @@ button{font:inherit;cursor:pointer;border:0;background:transparent;color:inherit
    ================================================= */
 .lightbox{
   position:fixed;inset:0;z-index:100;
-  background:rgba(15,12,8,.95);
+  background:rgba(6,19,46,.96);
   backdrop-filter:blur(8px);
   display:none;align-items:center;justify-content:center;
   padding:40px;
 }
 .lightbox.is-open{display:flex}
-.lightbox__inner{max-width:1100px;width:100%}
-.lightbox video{width:100%;border-radius:var(--radius);box-shadow: var(--shadow-lg)}
+.lightbox__inner{
+  max-width:1100px;width:100%;
+  display:flex;flex-direction:column;align-items:center;
+}
+.lightbox video,
+.lightbox img{
+  max-width:100%;
+  max-height: calc(100vh - 140px);
+  width:auto;height:auto;
+  border-radius:var(--radius);
+  box-shadow: var(--shadow-lg);
+  display:none;
+}
+.lightbox.is-video video{ display:block; width:100% }
+.lightbox.is-image img{ display:block }
 .lightbox__title{
   font-family:var(--font-display);font-size:18px;color:#fff;
   text-align:center;margin:18px 0 0;
+  min-height: 24px;
 }
 .lightbox__close{
   position:fixed;top:20px;right:24px;
@@ -745,8 +814,29 @@ button{font:inherit;cursor:pointer;border:0;background:transparent;color:inherit
   display:grid;place-items:center;
   box-shadow: var(--shadow-md);
   transition: transform .2s;
+  z-index:2;
 }
 .lightbox__close:hover{transform:rotate(90deg)}
+.lightbox__nav{
+  position:fixed;top:50%;transform:translateY(-50%);
+  width:54px;height:54px;border-radius:50%;
+  background: rgba(255,255,255,.10);
+  color:#fff;font-size:36px;line-height:1;
+  display:none;align-items:center;justify-content:center;
+  border:1px solid rgba(255,255,255,.2);
+  backdrop-filter: blur(8px);
+  transition: background .2s, transform .2s;
+  z-index:2;
+}
+.lightbox.is-image .lightbox__nav{ display:flex }
+.lightbox__nav:hover{ background: var(--brand); border-color: var(--brand); transform: translateY(-50%) scale(1.05) }
+.lightbox__nav--prev{ left: 24px }
+.lightbox__nav--next{ right: 24px }
+@media (max-width: 720px){
+  .lightbox__nav{ width:44px; height:44px; font-size:28px }
+  .lightbox__nav--prev{ left: 12px }
+  .lightbox__nav--next{ right: 12px }
+}
 
 /* =================================================
    Reveal animation
