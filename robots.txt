@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://khps05515.github.io/zhanzhi-site/sitemap.xml
