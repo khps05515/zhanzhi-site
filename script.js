@@ -208,6 +208,26 @@
     }
   });
 
+  /* ---------- Journal teaser (latest 3 posts on home page) ---------- */
+  const teaserGrid = document.getElementById('journalTeaser');
+  if (teaserGrid && typeof JOURNAL_POSTS !== 'undefined') {
+    const esc = (s) => s.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;');
+    JOURNAL_POSTS.slice(0, 3).forEach((post) => {
+      const text = post.body.join(' ');
+      const excerpt = text.length > 90 ? text.slice(0, 90) + '……' : text;
+      const a = document.createElement('a');
+      a.className = 'jteaser reveal';
+      a.href = 'journal.html';
+      a.innerHTML =
+        '<span class="jteaser__date">' + post.date.replace(/-/g, '.') + '</span>' +
+        '<h3 class="jteaser__title">' + esc(post.title) + '</h3>' +
+        '<p class="jteaser__excerpt">' + esc(excerpt) + '</p>' +
+        '<span class="jteaser__more">閱讀全文 →</span>';
+      teaserGrid.appendChild(a);
+      a.classList.add('is-visible');
+    });
+  }
+
   /* ---------- Footer year ---------- */
   const yearEl = document.getElementById('year');
   if (yearEl) yearEl.textContent = new Date().getFullYear();

@@ -616,6 +616,55 @@ button{font:inherit;cursor:pointer;border:0;background:transparent;color:inherit
 .event:hover img{ transform: scale(1.04) }
 
 /* =================================================
+   Work Journal Teaser (home page)
+   ================================================= */
+.journal-teaser{background: var(--bg-cream)}
+.jteaser__grid{
+  display:grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap:24px;
+  margin-bottom:44px;
+}
+.jteaser{
+  display:flex;flex-direction:column;
+  background:#fff;
+  border:1px solid var(--line);
+  border-radius:var(--radius);
+  padding:30px 30px 26px;
+  transition: transform .3s, box-shadow .3s, border-color .3s;
+  text-decoration:none;
+}
+.jteaser:hover{
+  transform:translateY(-6px);
+  box-shadow: var(--shadow-md);
+  border-color: color-mix(in srgb, var(--brand) 35%, var(--line));
+}
+.jteaser__date{
+  font-family:var(--font-mono);
+  font-size:12.5px;letter-spacing:.12em;
+  color:var(--brand);font-weight:600;
+  background: var(--peach);
+  padding:5px 14px;border-radius:999px;
+  align-self:flex-start;
+  margin-bottom:16px;
+}
+.jteaser__title{
+  font-family:var(--font-display);
+  font-size:20px;font-weight:700;
+  color:var(--ink);margin:0 0 12px;line-height:1.45;
+}
+.jteaser__excerpt{
+  font-size:14.5px;color:var(--ink-soft);
+  line-height:1.9;margin:0;flex:1;
+}
+.jteaser__more{
+  margin-top:18px;padding-top:16px;
+  border-top:1px dashed var(--line);
+  font-size:14px;font-weight:600;color:var(--brand);
+}
+.jteaser__cta{display:flex;justify-content:center}
+
+/* =================================================
    Brands marquee
    ================================================= */
 .brands{background: var(--bg-cream)}

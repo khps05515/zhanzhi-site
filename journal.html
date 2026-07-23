@@ -1,0 +1,341 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>AI 工作日誌 ─ 湛智有限公司 ｜ 棍子 Bryce Lin</title>
+<meta name="description" content="AI 企業教練棍子 (林昆良) 的工作日誌 ─ 記錄每一次企業輔導、課程現場、AI 工具實測與創業路上的思考。" />
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@300;400;500;700;900&family=Noto+Serif+TC:wght@500;700;900&family=Cormorant+Garamond:ital,wght@0,400;0,600;1,500&family=Space+Grotesk:wght@400;500;700&display=swap" rel="stylesheet">
+
+<link rel="stylesheet" href="styles.css" />
+<style>
+/* ===== Journal page specific ===== */
+.journal-hero{
+  background: var(--bg-deep);
+  color:#fff;
+  padding: 160px 0 80px;
+  position:relative;overflow:hidden;
+}
+.journal-hero::before{
+  content:"";position:absolute;inset:0;
+  background:
+    radial-gradient(ellipse at 20% 30%, rgba(30,77,139,.4) 0%, transparent 55%),
+    radial-gradient(ellipse at 85% 75%, rgba(125,180,240,.16) 0%, transparent 50%);
+}
+.journal-hero .container{position:relative;z-index:1}
+.journal-hero__title{
+  font-family:var(--font-display);
+  font-size: clamp(38px, 5vw, 64px);
+  font-weight:700;line-height:1.15;
+  margin:18px 0 16px;color:#fff;
+}
+.journal-hero__title em{
+  font-style:italic;color:var(--gold);
+  font-family:"Cormorant Garamond", var(--font-display);
+}
+.journal-hero__lead{
+  font-size:17px;color:rgba(255,255,255,.8);
+  max-width:640px;line-height:1.85;margin:0 0 30px;
+}
+.journal-hero .kicker{
+  color:var(--gold);
+  border-color: rgba(125,180,240,.35);
+  background: rgba(125,180,240,.1);
+}
+.journal-hero__stats{
+  display:flex;gap:40px;flex-wrap:wrap;
+  padding-top:26px;border-top:1px solid rgba(255,255,255,.15);
+}
+.journal-hero__stats strong{
+  font-family:var(--font-display);
+  font-size:34px;color:var(--gold);display:block;line-height:1.1;
+}
+.journal-hero__stats span{font-size:13px;color:rgba(255,255,255,.7)}
+
+.journal-body{background: var(--bg-cream); padding: 60px 0 110px}
+
+.journal-filters{
+  display:flex;gap:10px;flex-wrap:wrap;
+  margin-bottom:38px;
+  position:sticky;top:72px;z-index:5;
+  background: color-mix(in srgb, var(--bg-cream) 94%, transparent);
+  backdrop-filter: blur(10px);
+  padding:12px 0;
+}
+.jfilter{
+  padding:9px 20px;border-radius:999px;
+  border:1.5px solid var(--line);
+  background:#fff;color:var(--ink-soft);
+  font-size:14px;font-weight:500;
+  cursor:pointer;transition: all .2s;
+}
+.jfilter:hover{border-color:var(--brand);color:var(--brand)}
+.jfilter.is-active{
+  background:var(--brand);border-color:var(--brand);color:#fff;
+}
+
+.jlist{display:flex;flex-direction:column;gap:22px;max-width:860px;margin:0 auto}
+
+.jcard{
+  background:#fff;
+  border:1px solid var(--line);
+  border-radius:var(--radius);
+  padding:30px 34px;
+  transition: box-shadow .3s, border-color .3s, transform .3s;
+  cursor:pointer;
+}
+.jcard:hover{
+  border-color: color-mix(in srgb, var(--brand) 35%, var(--line));
+  box-shadow: var(--shadow-md);
+  transform: translateY(-2px);
+}
+.jcard__meta{
+  display:flex;align-items:center;gap:14px;margin-bottom:12px;flex-wrap:wrap;
+}
+.jcard__date{
+  font-family:var(--font-mono);
+  font-size:13px;letter-spacing:.12em;
+  color:var(--brand);font-weight:600;
+  background: var(--peach);
+  padding:5px 14px;border-radius:999px;
+}
+.jcard__title{
+  font-family:var(--font-display);
+  font-size:22px;font-weight:700;
+  color:var(--ink);margin:0 0 10px;line-height:1.4;
+}
+.jcard__excerpt{
+  font-size:15px;color:var(--ink-soft);line-height:1.9;margin:0;
+}
+.jcard__full{display:none;margin-top:6px}
+.jcard.is-open .jcard__full{display:block}
+.jcard.is-open .jcard__excerpt{display:none}
+.jcard__full p{
+  font-size:15.5px;color:var(--ink-soft);line-height:2;margin:0 0 14px;
+}
+.jcard__foot{
+  display:flex;align-items:center;justify-content:space-between;
+  margin-top:16px;padding-top:16px;
+  border-top:1px dashed var(--line);
+  flex-wrap:wrap;gap:10px;
+}
+.jcard__toggle{
+  font-size:14px;font-weight:600;color:var(--brand);
+  background:none;border:none;cursor:pointer;
+  display:inline-flex;align-items:center;gap:6px;
+}
+.jcard__toggle:hover{text-decoration:underline}
+.jcard__fb{
+  font-size:13px;color:var(--ink-mute);
+  display:inline-flex;align-items:center;gap:6px;
+}
+.jcard__fb:hover{color:var(--brand)}
+
+.jempty{
+  text-align:center;color:var(--ink-mute);
+  padding:60px 0;font-size:15px;
+}
+
+.jmore{
+  display:flex;justify-content:center;margin-top:40px;
+}
+
+@media (max-width: 720px){
+  .journal-hero{padding: 130px 0 60px}
+  .jcard{padding:24px 22px}
+  .journal-filters{top:64px}
+}
+</style>
+</head>
+<body>
+
+<!-- ====== Navigation ====== -->
+<header class="nav is-stuck" id="nav">
+  <div class="nav__inner">
+    <a href="index.html" class="nav__brand">
+      <span class="nav__mark">湛</span>
+      <span class="nav__name">
+        <span class="nav__name-zh">湛智有限公司</span>
+        <span class="nav__name-en">AI BUSINESS COACH</span>
+      </span>
+    </a>
+    <nav class="nav__links">
+      <a href="index.html#about">關於棍子</a>
+      <a href="index.html#services">合作模式</a>
+      <a href="index.html#showcase">口碑見證</a>
+      <a href="index.html#events">活動剪影</a>
+      <a href="journal.html" style="color:var(--brand);font-weight:700">工作日誌</a>
+      <a href="index.html#contact" class="nav__cta">立即聯繫</a>
+    </nav>
+    <button class="nav__menu" aria-label="開啟選單" id="navToggle">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+</header>
+
+<!-- ====== Journal Hero ====== -->
+<section class="journal-hero">
+  <div class="container">
+    <span class="kicker">WORK JOURNAL</span>
+    <h1 class="journal-hero__title">AI 工作<em>日誌</em></h1>
+    <p class="journal-hero__lead">
+      這裡記錄了棍子成為 AI 企業教練以來的每一步 ─
+      企業輔導現場、課程心得、AI 工具實測，以及創業路上的真實思考。
+      像日記，也像一場持續進行的冒險。
+    </p>
+    <div class="journal-hero__stats">
+      <div><strong id="statCount">─</strong><span>篇日誌</span></div>
+      <div><strong id="statSpan">─</strong><span>持續記錄</span></div>
+      <div><strong>每週更新</strong><span>來自 Facebook 第一線分享</span></div>
+    </div>
+  </div>
+</section>
+
+<!-- ====== Journal List ====== -->
+<section class="journal-body">
+  <div class="container">
+    <div class="journal-filters" id="journalFilters">
+      <button class="jfilter is-active" data-year="all">全部</button>
+      <button class="jfilter" data-year="2026">2026</button>
+      <button class="jfilter" data-year="2025">2025</button>
+    </div>
+
+    <div class="jlist" id="jlist"></div>
+    <div class="jempty" id="jempty" style="display:none">這個年份還沒有日誌。</div>
+    <div class="jmore" id="jmoreWrap" style="display:none">
+      <button class="btn btn--primary" id="jmoreBtn">載入更多日誌</button>
+    </div>
+  </div>
+</section>
+
+<!-- ====== Footer ====== -->
+<footer class="footer">
+  <div class="container footer__inner">
+    <div class="footer__brand">
+      <span class="footer__mark">湛</span>
+      <div>
+        <strong>湛智有限公司</strong>
+        <small>AI Business Coach ／ 棍子 林昆良 Bryce Lin</small>
+      </div>
+    </div>
+    <div class="footer__meta">
+      <small>© <span id="year"></span> 湛智有限公司 ZhanZhi Co., Ltd. All rights reserved.</small>
+      <small>陪伴你的團隊學會善用 AI，把時間用在真正有價值的事上。</small>
+    </div>
+  </div>
+</footer>
+
+<script src="journal-data.js"></script>
+<script>
+(function () {
+  'use strict';
+
+  const PAGE_SIZE = 15;
+  const listEl = document.getElementById('jlist');
+  const emptyEl = document.getElementById('jempty');
+  const moreWrap = document.getElementById('jmoreWrap');
+  const moreBtn = document.getElementById('jmoreBtn');
+
+  let activeYear = 'all';
+  let shown = PAGE_SIZE;
+
+  /* stats */
+  document.getElementById('statCount').textContent = JOURNAL_POSTS.length;
+  const dates = JOURNAL_POSTS.map(p => p.date).sort();
+  const firstYearMonth = dates[0].slice(0, 7).replace('-', '/');
+  document.getElementById('statSpan').textContent = firstYearMonth + ' 起';
+
+  function fmtDate(d) {
+    const [y, m, day] = d.split('-');
+    return `${y}.${m}.${day}`;
+  }
+
+  function excerptOf(post) {
+    const text = post.body.join(' ');
+    return text.length > 110 ? text.slice(0, 110) + '……' : text;
+  }
+
+  function filtered() {
+    if (activeYear === 'all') return JOURNAL_POSTS;
+    return JOURNAL_POSTS.filter(p => p.date.startsWith(activeYear));
+  }
+
+  function render() {
+    const posts = filtered();
+    listEl.innerHTML = '';
+    emptyEl.style.display = posts.length ? 'none' : 'block';
+
+    posts.slice(0, shown).forEach(post => {
+      const card = document.createElement('article');
+      card.className = 'jcard';
+
+      const fullParas = post.body.map(p => `<p>${escapeHtml(p)}</p>`).join('');
+      card.innerHTML = `
+        <div class="jcard__meta">
+          <span class="jcard__date">${fmtDate(post.date)}</span>
+        </div>
+        <h2 class="jcard__title">${escapeHtml(post.title)}</h2>
+        <p class="jcard__excerpt">${escapeHtml(excerptOf(post))}</p>
+        <div class="jcard__full">${fullParas}</div>
+        <div class="jcard__foot">
+          <button class="jcard__toggle" type="button">閱讀全文 ↓</button>
+          <a class="jcard__fb" href="${post.url}" target="_blank" rel="noopener" onclick="event.stopPropagation()">在 Facebook 查看原文 ↗</a>
+        </div>
+      `;
+
+      const toggle = card.querySelector('.jcard__toggle');
+      function flip(e) {
+        if (e) e.stopPropagation();
+        const open = card.classList.toggle('is-open');
+        toggle.textContent = open ? '收合 ↑' : '閱讀全文 ↓';
+        if (!open) card.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+      }
+      toggle.addEventListener('click', flip);
+      card.addEventListener('click', (e) => {
+        if (e.target.closest('a') || e.target.closest('button')) return;
+        flip();
+      });
+
+      listEl.appendChild(card);
+    });
+
+    moreWrap.style.display = posts.length > shown ? 'flex' : 'none';
+  }
+
+  function escapeHtml(s) {
+    return s.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;');
+  }
+
+  document.getElementById('journalFilters').addEventListener('click', (e) => {
+    const btn = e.target.closest('.jfilter');
+    if (!btn) return;
+    document.querySelectorAll('.jfilter').forEach(b => b.classList.remove('is-active'));
+    btn.classList.add('is-active');
+    activeYear = btn.dataset.year;
+    shown = PAGE_SIZE;
+    render();
+    window.scrollTo({ top: document.querySelector('.journal-body').offsetTop - 80, behavior: 'smooth' });
+  });
+
+  moreBtn.addEventListener('click', () => {
+    shown += PAGE_SIZE;
+    render();
+  });
+
+  /* mobile menu */
+  const navToggle = document.getElementById('navToggle');
+  const navLinks = document.querySelector('.nav__links');
+  if (navToggle && navLinks) {
+    navToggle.addEventListener('click', () => navLinks.classList.toggle('is-open'));
+  }
+
+  document.getElementById('year').textContent = new Date().getFullYear();
+
+  render();
+})();
+</script>
+</body>
+</html>
