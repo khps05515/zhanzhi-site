@@ -208,6 +208,58 @@
     }
   });
 
+  /* ---------- Student voices (FB 學員口碑) ---------- */
+  const voicesGrid = document.getElementById('voicesGrid');
+  if (voicesGrid && typeof TESTIMONIAL_POSTS !== 'undefined') {
+    const escV = (s) => String(s || '').replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;');
+    const KIND_LABEL = { post: '貼文分享', video: '影片見證', reel: '短影音' };
+    const KIND_ICON = { post: '💬', video: '🎬', reel: '📱' };
+
+    TESTIMONIAL_POSTS.forEach((t, idx) => {
+      const kind = KIND_LABEL[t.kind] ? t.kind : 'post';
+      const title = t.title || '學員真實回饋';
+      const excerpt =
+        t.excerpt || '點進 Facebook 查看這位學員的完整分享，以及現場最真實的互動與回饋。';
+      const a = document.createElement('a');
+      a.className = 'voice';
+      a.href = t.url;
+      a.target = '_blank';
+      a.rel = 'noopener';
+      a.setAttribute('aria-label', title + '（開啟 Facebook 原文）');
+      a.innerHTML =
+        '<div class="voice__top">' +
+          '<span class="voice__kind"><span class="voice__kind-icon">' + KIND_ICON[kind] + '</span>' + KIND_LABEL[kind] + '</span>' +
+          '<span class="voice__num">' + String(idx + 1).padStart(2, '0') + '</span>' +
+        '</div>' +
+        '<span class="voice__quote">❝</span>' +
+        '<h3 class="voice__title">' + escV(title) + '</h3>' +
+        '<p class="voice__excerpt">' + escV(excerpt) + '</p>' +
+        (t.author ? '<span class="voice__author">─ ' + escV(t.author) + '</span>' : '') +
+        '<span class="voice__link">在 Facebook 查看原文 ↗</span>';
+      voicesGrid.appendChild(a);
+    });
+
+    // Reveal animation, consistent with the rest of the page
+    const voiceCards = voicesGrid.querySelectorAll('.voice');
+    voiceCards.forEach((el) => el.classList.add('reveal'));
+    if ('IntersectionObserver' in window) {
+      const voiceIO = new IntersectionObserver(
+        (entries) => {
+          entries.forEach((entry) => {
+            if (entry.isIntersecting) {
+              entry.target.classList.add('is-visible');
+              voiceIO.unobserve(entry.target);
+            }
+          });
+        },
+        { threshold: 0.12, rootMargin: '0px 0px -60px 0px' }
+      );
+      voiceCards.forEach((el) => voiceIO.observe(el));
+    } else {
+      voiceCards.forEach((el) => el.classList.add('is-visible'));
+    }
+  }
+
   /* ---------- Journal teaser (latest 3 posts on home page) ---------- */
   const teaserGrid = document.getElementById('journalTeaser');
   if (teaserGrid && typeof JOURNAL_POSTS !== 'undefined') {

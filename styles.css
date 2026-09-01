@@ -561,6 +561,92 @@ button{font:inherit;cursor:pointer;border:0;background:transparent;color:inherit
 .show figcaption small{font-size:12.5px;color:rgba(255,255,255,.65);letter-spacing:.04em}
 
 /* =================================================
+   Student Voices ─ FB 學員口碑
+   ================================================= */
+.voices{background: var(--bg-cream); position:relative}
+.voices__grid{
+  display:grid;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  gap:24px;
+}
+.voice{
+  position:relative;
+  display:flex;flex-direction:column;
+  background:#fff;
+  border:1px solid var(--line);
+  border-radius:var(--radius);
+  padding:28px 30px 24px;
+  transition: transform .3s, box-shadow .3s, border-color .3s;
+  overflow:hidden;
+}
+.voice::after{
+  content:"";position:absolute;inset:auto -30% -30% auto;
+  width:180px;height:180px;border-radius:50%;
+  background: radial-gradient(circle, color-mix(in srgb, var(--brand) 12%, transparent), transparent 70%);
+  opacity:0;transition:opacity .4s;
+  pointer-events:none;
+}
+.voice:hover{
+  transform:translateY(-6px);
+  box-shadow: var(--shadow-md);
+  border-color: color-mix(in srgb, var(--brand) 40%, var(--line));
+}
+.voice:hover::after{opacity:1}
+
+.voice__top{
+  display:flex;align-items:center;justify-content:space-between;
+  margin-bottom:18px;
+}
+.voice__kind{
+  display:inline-flex;align-items:center;gap:8px;
+  font-size:12.5px;font-weight:600;letter-spacing:.06em;
+  color:var(--brand);
+  background: var(--peach);
+  padding:6px 14px;border-radius:999px;
+}
+.voice__kind-icon{font-size:14px;line-height:1}
+.voice__num{
+  font-family:var(--font-mono);
+  font-size:13px;letter-spacing:.2em;
+  color:var(--ink-mute);font-weight:600;
+}
+.voice__quote{
+  font-family:var(--font-display);
+  font-size:44px;line-height:1;
+  color: color-mix(in srgb, var(--brand) 35%, transparent);
+  margin-bottom:6px;
+}
+.voice__title{
+  font-family:var(--font-display);
+  font-size:19px;font-weight:700;
+  color:var(--ink);margin:0 0 10px;line-height:1.5;
+}
+.voice__excerpt{
+  font-size:14.5px;color:var(--ink-soft);
+  line-height:1.9;margin:0;flex:1;
+  display:-webkit-box;
+  -webkit-line-clamp:5;
+  -webkit-box-orient:vertical;
+  overflow:hidden;
+}
+.voice__author{
+  margin-top:14px;
+  font-size:13.5px;font-weight:600;color:var(--ink);
+  letter-spacing:.04em;
+}
+.voice__link{
+  margin-top:18px;padding-top:16px;
+  border-top:1px dashed var(--line);
+  font-size:14px;font-weight:600;color:var(--brand);
+  transition: color .2s;
+}
+.voice:hover .voice__link{color:var(--brand-deep)}
+
+@media (max-width: 768px){
+  .voices__grid{grid-template-columns: 1fr}
+}
+
+/* =================================================
    Event Highlights ─ Masonry Gallery
    ================================================= */
 .events{background: var(--bg-paper); position:relative}
