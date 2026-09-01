@@ -208,6 +208,34 @@
     }
   });
 
+  /* ---------- Student testimonials quote wall ---------- */
+  const quotesGrid = document.getElementById('quotesGrid');
+  if (quotesGrid && typeof TESTIMONIALS !== 'undefined') {
+    const escQ = (s) => s.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;');
+    const CLIP = 120;
+    TESTIMONIALS.forEach((t) => {
+      const card = document.createElement('article');
+      card.className = 'quote reveal is-visible';
+      const isLong = t.text.length > CLIP + 30;
+      const shortText = isLong ? t.text.slice(0, CLIP) + '……' : t.text;
+      card.innerHTML =
+        '<p class="quote__text">' + escQ(shortText) + '</p>' +
+        (isLong ? '<span class="quote__more">展開全文 ↓</span>' : '') +
+        '<div class="quote__foot">' +
+          '<div class="quote__who"><strong>' + escQ(t.name) + '</strong><small>' + escQ(t.role) + '</small></div>' +
+          '<a class="quote__fb" href="' + t.url + '" target="_blank" rel="noopener">FB 原文 ↗</a>' +
+        '</div>';
+      if (isLong) {
+        card.addEventListener('click', (e) => {
+          if (e.target.closest('a')) return;
+          const open = card.classList.toggle('is-open');
+          card.querySelector('.quote__text').textContent = open ? t.text : shortText;
+        });
+      }
+      quotesGrid.appendChild(card);
+    });
+  }
+
   /* ---------- Journal teaser (latest 3 posts on home page) ---------- */
   const teaserGrid = document.getElementById('journalTeaser');
   if (teaserGrid && typeof JOURNAL_POSTS !== 'undefined') {
