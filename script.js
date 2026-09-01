@@ -213,7 +213,9 @@
   if (quotesGrid && typeof TESTIMONIALS !== 'undefined') {
     const escQ = (s) => s.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;');
     const CLIP = 120;
-    TESTIMONIALS.forEach((t) => {
+    const INITIAL = 9;
+
+    function buildQuoteCard(t) {
       const card = document.createElement('article');
       card.className = 'quote reveal is-visible';
       const isLong = t.text.length > CLIP + 30;
@@ -232,8 +234,25 @@
           card.querySelector('.quote__text').textContent = open ? t.text : shortText;
         });
       }
-      quotesGrid.appendChild(card);
-    });
+      return card;
+    }
+
+    TESTIMONIALS.slice(0, INITIAL).forEach((t) => quotesGrid.appendChild(buildQuoteCard(t)));
+
+    if (TESTIMONIALS.length > INITIAL) {
+      const wrap = document.createElement('div');
+      wrap.className = 'quotes__morewrap';
+      const btn = document.createElement('button');
+      btn.type = 'button';
+      btn.className = 'btn btn--ghost quotes__morebtn';
+      btn.textContent = '顯示全部 ' + TESTIMONIALS.length + ' 則口碑 ↓';
+      btn.addEventListener('click', () => {
+        TESTIMONIALS.slice(INITIAL).forEach((t) => quotesGrid.appendChild(buildQuoteCard(t)));
+        wrap.remove();
+      });
+      wrap.appendChild(btn);
+      quotesGrid.insertAdjacentElement('afterend', wrap);
+    }
   }
 
   /* ---------- Journal teaser (latest 3 posts on home page) ---------- */

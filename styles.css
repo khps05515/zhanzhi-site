@@ -665,6 +665,9 @@ button{font:inherit;cursor:pointer;border:0;background:transparent;color:inherit
   flex-shrink: 0;
 }
 .quote__fb:hover{ color: var(--gold) }
+.quotes__morewrap{
+  display:flex;justify-content:center;margin-top:26px;
+}
 
 /* =================================================
    Event Highlights ─ Masonry Gallery
