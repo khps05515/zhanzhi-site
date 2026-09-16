@@ -1,0 +1,380 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex, nofollow">
+<title>創空間 AI 導入三個月現場檢核</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500;600&family=Noto+Sans+TC:wght@400;500;700&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#F4F1EC; --paper:#FBF9F6; --ink:#2E2A26; --mute:#7A736B; --line:#D9D2C7;
+  --walnut:#8B6A4E; --sage:#9AA58F; --brass:#B8935A; --linen:#EAE4DA; --ok:#5F7F5A; --bad:#A64B3B;
+}
+@media (prefers-color-scheme: dark){ :root:not([data-theme="light"]){
+  --bg:#1E1B18; --paper:#282420; --ink:#F1ECE4; --mute:#A79E93; --line:#3E3831;
+  --walnut:#C39A76; --sage:#8FA084; --brass:#D2B07E; --linen:#332E28; --ok:#8FB28A; --bad:#D57A69;
+}}
+:root[data-theme="dark"]{
+  --bg:#1E1B18; --paper:#282420; --ink:#F1ECE4; --mute:#A79E93; --line:#3E3831;
+  --walnut:#C39A76; --sage:#8FA084; --brass:#D2B07E; --linen:#332E28; --ok:#8FB28A; --bad:#D57A69;
+}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--ink);font-family:"Noto Sans TC","Microsoft JhengHei","PingFang TC",sans-serif;line-height:1.5}
+.serif{font-family:"Cormorant Garamond",Cambria,Georgia,serif}
+header{padding:20px 16px 8px;border-bottom:1px solid var(--line)}
+header .eyebrow{font-size:11px;letter-spacing:.3em;color:var(--walnut);text-transform:uppercase}
+header h1{margin:2px 0 2px;font-size:22px;font-weight:700}
+header .sub{font-size:12px;color:var(--mute)}
+.status{font-size:11px;color:var(--mute);margin-top:6px;display:flex;gap:8px;align-items:center}
+.dot{width:8px;height:8px;border-radius:50%;background:var(--line)}
+.dot.on{background:var(--ok)}
+nav{display:flex;border-bottom:1px solid var(--line);background:var(--bg);position:sticky;top:0;z-index:5;overflow-x:auto}
+nav button{flex:1;min-width:88px;padding:12px 6px;border:0;background:none;color:var(--mute);font:inherit;font-size:13px;cursor:pointer;border-bottom:2px solid transparent;white-space:nowrap}
+nav button.on{color:var(--ink);border-bottom-color:var(--walnut);font-weight:700}
+main{padding:14px 14px 60px;max-width:760px;margin:0 auto}
+.view{display:none}.view.on{display:block}
+.group{border:1px solid var(--line);background:var(--paper);margin-bottom:14px}
+.group>summary{list-style:none;padding:14px;display:flex;align-items:center;gap:12px;cursor:pointer}
+.group>summary::-webkit-details-marker{display:none}
+.gnum{font-size:26px;color:var(--walnut);line-height:1;min-width:38px}
+.gname{font-weight:700;font-size:16px}.gmeta{font-size:12px;color:var(--mute)}
+.q{border-top:1px solid var(--line);padding:12px 14px 14px}
+.qhead{display:flex;gap:10px;align-items:flex-start}
+.tag{background:var(--walnut);color:var(--bg);font-family:"Cormorant Garamond",Cambria,serif;font-weight:600;font-size:14px;width:30px;height:26px;display:flex;align-items:center;justify-content:center;flex:none}
+.qtext{font-weight:700;font-size:15px}
+.qhint{font-size:12px;color:var(--mute);margin:4px 0 0 40px}
+.opts{display:flex;flex-wrap:wrap;gap:8px;margin:10px 0 0 40px}
+.opt{display:flex;align-items:center;border:1px solid var(--line);background:var(--bg);font-size:13px;overflow:hidden}
+.opt span.l{padding:6px 10px}
+.opt b{padding:6px 10px;background:var(--linen);min-width:34px;text-align:center;font-family:"Cormorant Garamond",Cambria,serif;font-size:16px}
+.opt button{border:0;background:none;color:var(--ink);font-size:16px;width:30px;height:32px;cursor:pointer}
+.opt button:active{background:var(--linen)}
+.form .opt{cursor:pointer}
+.form .opt.sel{border-color:var(--walnut);background:var(--linen)}
+textarea,input[type=text],input[type=number]{width:100%;border:1px solid var(--line);background:var(--bg);color:var(--ink);font:inherit;font-size:13px;padding:8px;resize:vertical}
+.notes{margin:10px 0 0 40px}
+.notes label{font-size:11px;color:var(--mute);display:block;margin-bottom:4px}
+.card{border:1px solid var(--line);background:var(--paper);padding:14px;margin-bottom:14px}
+.card h3{margin:0 0 6px;font-size:15px}
+.card p.small{font-size:12px;color:var(--mute);margin:0 0 10px}
+.row2{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.btn{border:1px solid var(--ink);background:var(--ink);color:var(--bg);padding:10px 16px;font:inherit;font-size:14px;cursor:pointer}
+.btn.ghost{background:none;color:var(--ink)}
+.btn.walnut{background:var(--walnut);border-color:var(--walnut)}
+.btn:disabled{opacity:.5}
+.actions{display:flex;gap:10px;flex-wrap:wrap;margin-top:10px}
+table{width:100%;border-collapse:collapse;font-size:12px}
+th,td{border:1px solid var(--line);padding:6px;text-align:left;vertical-align:middle}
+th{background:var(--ink);color:var(--bg);font-weight:500}
+td input{border:0;background:transparent;padding:4px;width:100%}
+td:first-child{white-space:nowrap}
+.verdict{display:grid;grid-template-columns:44px 1fr auto;gap:12px;align-items:center;padding:12px 0;border-bottom:1px solid var(--line)}
+.sw{width:44px;height:44px}
+.verdict .t{font-weight:700}.verdict .d{font-size:12px;color:var(--mute)}
+.pill{font-size:12px;padding:4px 10px;border:1px solid var(--line);white-space:nowrap}
+.pill.ok{color:var(--ok);border-color:var(--ok)}.pill.bad{color:var(--bad);border-color:var(--bad)}.pill.na{color:var(--mute)}
+.big{font-family:"Cormorant Garamond",Cambria,serif;font-size:40px;line-height:1;color:var(--walnut)}
+.stat{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin-bottom:14px}
+.stat div{border:1px solid var(--line);background:var(--paper);padding:10px;text-align:center}
+.stat small{display:block;font-size:11px;color:var(--mute)}
+.resp{font-size:12px;padding:8px 0;border-bottom:1px solid var(--line)}
+.resp b{font-weight:700}
+.dim{position:relative;height:1px;background:var(--walnut);margin:10px 0 14px 0;width:120px}
+.dim::before,.dim::after{content:"";position:absolute;top:-4px;width:1px;height:9px;background:var(--walnut)}
+.dim::after{right:0}
+.toast{position:fixed;left:50%;bottom:20px;transform:translateX(-50%);background:var(--ink);color:var(--bg);padding:10px 16px;font-size:13px;opacity:0;transition:opacity .3s;pointer-events:none;z-index:9}
+.toast.on{opacity:1}
+.bar{height:6px;background:var(--linen);margin-top:4px}
+.bar i{display:block;height:100%;background:var(--walnut)}
+</style>
+</head>
+<body>
+<header>
+  <div class="eyebrow serif">AI Site Review</div>
+  <h1>創空間 AI 導入三個月現場檢核</h1>
+  <div class="sub">了解使用習慣、頻率與狀態，判定合作是否有效｜棍子教練 × 創空間</div>
+  <div class="status"><span class="dot" id="dot"></span><span id="statusText">連線中…</span></div>
+</header>
+<nav>
+  <button class="on" data-v="host">現場提問</button>
+  <button data-v="form">學員填答</button>
+  <button data-v="sheet">12 項盤點</button>
+  <button data-v="verdict">判定結果</button>
+</nav>
+<main>
+
+<!-- 現場提問 / 主持人記錄 -->
+<section class="view on" id="v-host">
+  <p style="font-size:12px;color:var(--mute);margin:0 0 12px">主持人用：舉手就按 ＋，開放題直接打字或口述後補。所有紀錄即時同步。</p>
+  <div id="hostGroups"></div>
+</section>
+
+<!-- 學員填答 -->
+<section class="view" id="v-form">
+  <div class="card">
+    <h3>學員自填</h3>
+    <p class="small">請掃碼開同一頁，填完按送出。約 5 分鐘。</p>
+    <div class="row2">
+      <div><label style="font-size:11px;color:var(--mute)">姓名 / 暱稱</label><input type="text" id="fName" placeholder="例：Kevin"></div>
+      <div><label style="font-size:11px;color:var(--mute)">部門</label><input type="text" id="fDept" placeholder="設計部 / 工程部 / 採購 / 管理"></div>
+    </div>
+  </div>
+  <div id="formGroups" class="form"></div>
+  <div class="actions"><button class="btn walnut" id="submitBtn">送出填答</button></div>
+</section>
+
+<!-- 12 項盤點 -->
+<section class="view" id="v-sheet">
+  <div class="card">
+    <h3>12 項 AI 工作流程成效盤點</h3>
+    <p class="small">三問：過去花多久 ／ AI 進來後花多久 ／ 品質是否更具競爭力。填「小時」或「天」都可以，一致即可。</p>
+    <div style="overflow-x:auto">
+    <table id="wfTable">
+      <thead><tr><th>工作流程</th><th style="width:90px">過去</th><th style="width:90px">AI 後</th><th style="width:70px">品質↑</th><th>備註</th></tr></thead>
+      <tbody></tbody>
+    </table>
+    </div>
+  </div>
+</section>
+
+<!-- 判定 -->
+<section class="view" id="v-verdict">
+  <div class="stat">
+    <div><span class="big" id="sResp">0</span><small>份填答</small></div>
+    <div><span class="big" id="sWf">0</span><small>/12 項有數字</small></div>
+    <div><span class="big" id="sSave">0</span><small>估計節省 %</small></div>
+  </div>
+  <div class="card">
+    <h3>成功或失敗，怎麼判定</h3>
+    <p class="small">門檻事先定，現場當場公布。有學員填答時以填答為準，否則以主持人舉手計數為準。</p>
+    <div id="verdicts"></div>
+    <div style="margin-top:14px;font-size:14px" id="verdictSummary"></div>
+  </div>
+  <div class="card">
+    <h3>填答一覽</h3>
+    <div id="respList" style="max-height:320px;overflow:auto"></div>
+  </div>
+  <div class="actions">
+    <button class="btn" id="exportBtn">匯出 CSV</button>
+    <button class="btn ghost" id="resetBtn">清空本場資料</button>
+  </div>
+</section>
+</main>
+<div class="toast" id="toast"></div>
+
+<script>
+// ---------- 問題定義 ----------
+const FLOWS=["現場丈量","客戶需求分析","客戶提案撰寫","提案 PPT 製作","平面配置圖輔助","3D 模型建置","效果圖生成渲染","設計案件報價單","文書工作與報表生成","工期表製作與安排","工地缺失照比對分析","主管工作儀表板"];
+const GROUPS=[
+ {n:"01",name:"使用頻率與習慣",meta:"量化題，全員舉手或貼點",qs:[
+  {id:"q1",t:"過去一週，你有幾天實際用 AI 完成工作？",o:["0 天","1–2 天","3–4 天","每天"]},
+  {id:"q2",t:"一天平均開 AI 幾次？",o:["0 次","1–2 次","3–5 次","不離手"]},
+  {id:"q3",t:"你最常用的工具是哪一個？",o:["Claude","GPT","Gemini","其他"],hint:"第二常用的請寫在備註"},
+  {id:"q4",t:"你用 AI 是「想到才用」還是「某些工作一定會用」？",o:["想到才用","某些工作一定會用"],hint:"若是後者，是哪幾項？"},
+  {id:"q5",t:"你有自己存下來重複使用的 prompt、skill 或設定檔嗎？",o:["沒有","1–2 個","3–5 個","5 個以上"]},
+ ]},
+ {n:"02",name:"使用深度",meta:"看有沒有從「試用」進到「流程」",qs:[
+  {id:"q6",t:"哪些 AI 工作已經變成正式流程，不用再想「要不要用」？",o:["估價報價","點料拆單","請款單據","3D 建模","AI 渲染","缺失照比對","工期表","提案簡報","其他"],multi:true},
+  {id:"q7",t:"哪一件試過之後放棄了？為什麼？",o:["不準","太慢","沒時間整理","不信任","沒放棄過"],hint:"放棄的是哪一件，寫備註"},
+  {id:"q8",t:"你的 AI 產出通常要改幾次才能用？",o:["1 次","2–3 次","5 次以上","改到不如自己做"]},
+  {id:"q9",t:"你有把做法教給或傳給同事嗎？對方有真的用起來嗎？",o:["有傳＋有用","有傳沒用","沒傳"]},
+  {id:"q10",t:"如果你明天請假，同事能接手你那套 AI 工作方式嗎？",o:["能","看得懂但不會用","完全不行"]},
+ ]},
+ {n:"03",name:"成效檢核",meta:"對照 12 項盤點表，以數字為主",qs:[
+  {id:"q11",t:"挑一項你最常用的：以前花多久？現在花多久？",open:true,hint:"例：估價 2 天 → 2 小時（也請填進「12 項盤點」）"},
+  {id:"q12",t:"這三個月 AI 有沒有抓到你自己會漏掉的東西？",o:["有","沒有"],hint:"例：漏估項目、漏畫電器櫃、點料錯誤"},
+  {id:"q13",t:"品質有變得更有競爭力嗎？具體是哪裡？",o:["更快交","更完整","客戶反應好","沒感覺"],multi:true},
+  {id:"q14",t:"AI 的產出，你敢直接交給主管或客戶的比例？",o:["0%","30%","50%","80% 以上"]},
+  {id:"q15",t:"哪一項公司「還沒開始用 AI」但你覺得最應該用？",open:true},
+ ]},
+ {n:"04",name:"信任與卡點",meta:"開放深聊，每部門挑 1–2 人",qs:[
+  {id:"q16",t:"你現在對 AI 的信任度打幾分？三個月前是幾分？",open:true,hint:"1–10 分，兩個數字都要，例：3 → 7"},
+  {id:"q17",t:"目前最大的卡點是什麼？",o:["資料不齊","不會下指令","沒時間","帳號工具","主管沒要求"],multi:true},
+  {id:"q18",t:"接下來三個月只能改善一件事，你希望是什麼？",open:true},
+  {id:"q19",t:"這三個月最有價值的是？",o:["學會工具","流程被重新整理"],hint:"二選一並說原因"},
+  {id:"q20",t:"誠實一點：沒有教練每週來，下個月你還會繼續用嗎？",o:["會","可能","不會"]},
+ ]},
+];
+const ALLQ=GROUPS.flatMap(g=>g.qs);
+
+// ---------- 狀態 ----------
+let session={tallies:{},notes:{},workflows:FLOWS.map(()=>({before:"",after:"",quality:"",note:""}))};
+let responses=[]; // {id,name,dept,answers,ts}
+let db=null, downloads=null, sessionRef=null, saveTimer=null;
+const LS="creaspace-ai-review";
+const $=s=>document.querySelector(s);
+function toast(m){const t=$("#toast");t.textContent=m;t.classList.add("on");setTimeout(()=>t.classList.remove("on"),1800);}
+function setStatus(on,txt){$("#dot").classList.toggle("on",on);$("#statusText").textContent=txt;}
+
+// ---------- 主持人視圖 ----------
+function renderHost(){
+  const wrap=$("#hostGroups");wrap.innerHTML="";
+  GROUPS.forEach((g,gi)=>{
+    const d=document.createElement("details");d.className="group";d.open=gi===0;
+    d.innerHTML=`<summary><span class="gnum serif">${g.n}</span><div><div class="gname">${g.name}</div><div class="gmeta">${g.meta}</div></div></summary>`;
+    g.qs.forEach(q=>{
+      const num=q.id.slice(1);
+      const el=document.createElement("div");el.className="q";
+      let opts="";
+      if(q.o){opts=`<div class="opts">`+q.o.map(o=>{const c=(session.tallies[q.id]||{})[o]||0;return `<div class="opt"><span class="l">${o}</span><button data-q="${q.id}" data-o="${o}" data-d="-1">−</button><b id="t-${q.id}-${cssId(o)}">${c}</b><button data-q="${q.id}" data-o="${o}" data-d="1">＋</button></div>`;}).join("")+`</div>`;}
+      el.innerHTML=`<div class="qhead"><span class="tag">${num}</span><div class="qtext">${q.t}</div></div>${q.hint?`<div class="qhint">${q.hint}</div>`:""}${opts}<div class="notes"><label>現場紀錄 / 口述重點</label><textarea rows="2" data-note="${q.id}" placeholder="誰說了什麼、原因、例子…">${session.notes[q.id]||""}</textarea></div>`;
+      d.appendChild(el);
+    });
+    wrap.appendChild(d);
+  });
+  wrap.querySelectorAll("button[data-q]").forEach(b=>b.onclick=()=>{
+    const {q,o,d}=b.dataset;const t=session.tallies[q]=session.tallies[q]||{};
+    t[o]=Math.max(0,(t[o]||0)+Number(d));$("#t-"+q+"-"+cssId(o)).textContent=t[o];scheduleSave();renderVerdict();
+  });
+  wrap.querySelectorAll("textarea[data-note]").forEach(t=>t.oninput=()=>{session.notes[t.dataset.note]=t.value;scheduleSave();});
+}
+function cssId(s){return s.replace(/[^\w一-鿿]/g,"_");}
+
+// ---------- 學員填答視圖 ----------
+const formAns={};
+function renderForm(){
+  const wrap=$("#formGroups");wrap.innerHTML="";
+  GROUPS.forEach((g,gi)=>{
+    const d=document.createElement("details");d.className="group";d.open=true;
+    d.innerHTML=`<summary><span class="gnum serif">${g.n}</span><div><div class="gname">${g.name}</div></div></summary>`;
+    g.qs.forEach(q=>{
+      const el=document.createElement("div");el.className="q";
+      let body="";
+      if(q.o) body=`<div class="opts">`+q.o.map(o=>`<div class="opt" data-fq="${q.id}" data-fo="${o}"><span class="l">${o}</span></div>`).join("")+`</div>`;
+      body+=`<div class="notes"><label>${q.open?"回答":"補充（可留空）"}</label><textarea rows="${q.open?2:1}" data-fnote="${q.id}"></textarea></div>`;
+      el.innerHTML=`<div class="qhead"><span class="tag">${q.id.slice(1)}</span><div class="qtext">${q.t}${q.multi?"（可複選）":""}</div></div>${q.hint?`<div class="qhint">${q.hint}</div>`:""}${body}`;
+      d.appendChild(el);
+    });
+    wrap.appendChild(d);
+  });
+  wrap.querySelectorAll(".opt[data-fq]").forEach(o=>o.onclick=()=>{
+    const q=ALLQ.find(x=>x.id===o.dataset.fq);
+    if(q.multi){o.classList.toggle("sel");formAns[q.id]=[...wrap.querySelectorAll(`.opt[data-fq="${q.id}"].sel`)].map(x=>x.dataset.fo);}
+    else{wrap.querySelectorAll(`.opt[data-fq="${q.id}"]`).forEach(x=>x.classList.remove("sel"));o.classList.add("sel");formAns[q.id]=o.dataset.fo;}
+  });
+  wrap.querySelectorAll("textarea[data-fnote]").forEach(t=>t.oninput=()=>{formAns[t.dataset.fnote+"_note"]=t.value;});
+}
+$("#submitBtn").onclick=async()=>{
+  const name=$("#fName").value.trim();if(!name){toast("請先填姓名");return;}
+  const r={name,dept:$("#fDept").value.trim(),answers:{...formAns},ts:Date.now()};
+  $("#submitBtn").disabled=true;
+  try{
+    if(db){await db.collection("responses").add(r);}
+    else{r.id="l"+r.ts;responses.push(r);saveLocal();renderVerdict();}
+    toast("已送出，謝謝！");
+    Object.keys(formAns).forEach(k=>delete formAns[k]);renderForm();$("#fName").value="";
+  }catch(e){toast("送出失敗："+(e.code||e.message));}
+  $("#submitBtn").disabled=false;
+};
+
+// ---------- 12 項盤點 ----------
+function renderSheet(){
+  const tb=$("#wfTable tbody");tb.innerHTML="";
+  FLOWS.forEach((f,i)=>{const w=session.workflows[i];
+    const tr=document.createElement("tr");
+    tr.innerHTML=`<td>${String(i+1).padStart(2,"0")}　${f}</td><td><input data-w="${i}" data-k="before" value="${esc(w.before)}" placeholder="2 天"></td><td><input data-w="${i}" data-k="after" value="${esc(w.after)}" placeholder="2 小時"></td><td><input data-w="${i}" data-k="quality" value="${esc(w.quality)}" placeholder="是/否"></td><td><input data-w="${i}" data-k="note" value="${esc(w.note)}" placeholder="改幾次、漏項…"></td>`;
+    tb.appendChild(tr);
+  });
+  tb.querySelectorAll("input").forEach(inp=>inp.oninput=()=>{session.workflows[inp.dataset.w][inp.dataset.k]=inp.value;scheduleSave();renderVerdict();});
+}
+function esc(s){return String(s||"").replace(/"/g,"&quot;");}
+function toHours(s){if(!s)return null;const m=String(s).match(/([\d.]+)\s*(天|日|d|小時|hr|h|分|min|m)?/i);if(!m)return null;const n=parseFloat(m[1]);const u=(m[2]||"小時").toLowerCase();if(/天|日|d/.test(u))return n*8;if(/分|min|^m$/.test(u))return n/60;return n;}
+
+// ---------- 判定 ----------
+function pct(a,b){return b?Math.round(a/b*100):0;}
+function tallyCount(q,opts){const t=session.tallies[q]||{};return opts.reduce((s,o)=>s+(t[o]||0),0);}
+function tallyTotal(q){return Object.values(session.tallies[q]||{}).reduce((a,b)=>a+b,0);}
+function renderVerdict(){
+  const N=responses.length;const useResp=N>0;
+  const has=(r,q,vals)=>{const a=r.answers[q];return Array.isArray(a)?a.some(v=>vals.includes(v)):vals.includes(a);};
+  // 1 頻率
+  const f_n=useResp?responses.filter(r=>has(r,"q1",["3–4 天","每天"])).length:tallyCount("q1",["3–4 天","每天"]);
+  const f_t=useResp?N:tallyTotal("q1");
+  // 2 深度：不同流程被回答為正式流程的種類數
+  let flows=new Set();
+  if(useResp)responses.forEach(r=>(r.answers.q6||[]).forEach(v=>flows.add(v)));
+  else Object.entries(session.tallies.q6||{}).forEach(([k,v])=>{if(v>0)flows.add(k);});
+  flows.delete("其他");
+  // 3 成效
+  const wfDone=session.workflows.filter(w=>toHours(w.before)!==null&&toHours(w.after)!==null);
+  let saveSum=0,saveN=0;wfDone.forEach(w=>{const b=toHours(w.before),a=toHours(w.after);if(b>0){saveSum+=(b-a)/b;saveN++;}});
+  // 4 可複製
+  const c_n=useResp?responses.filter(r=>r.answers.q10==="能").length:tallyCount("q10",["能"]);
+  // 5 自主
+  const a_n=useResp?responses.filter(r=>r.answers.q20==="會").length:tallyCount("q20",["會"]);
+  const a_t=useResp?N:tallyTotal("q20");
+  const rows=[
+    {sw:"var(--walnut)",t:"頻率",q:"Q1",d:`每週用 3 天以上 ≥ 一半　現在 ${f_n}/${f_t}（${pct(f_n,f_t)}%）`,ok:f_t?f_n*2>=f_t:null},
+    {sw:"var(--sage)",t:"深度",q:"Q6",d:`至少 3 條流程已成正式流程　現在 ${flows.size} 條${flows.size?"："+[...flows].join("、"):""}`,ok:flows.size>=3,na:!useResp&&!tallyTotal("q6")},
+    {sw:"var(--brass)",t:"成效",q:"Q11",d:`12 項中至少 5 項有具體數字　現在 ${wfDone.length} 項`,ok:wfDone.length>=5,na:wfDone.length===0},
+    {sw:"var(--line)",t:"可複製",q:"Q10",d:`回答「能接手」≥ 3 位　現在 ${c_n} 位`,ok:c_n>=3,na:!useResp&&!tallyTotal("q10")},
+    {sw:"var(--ink)",t:"自主性",q:"Q20",d:`「會繼續用」< 一半是警訊　現在 ${a_n}/${a_t}（${pct(a_n,a_t)}%）`,ok:a_t?a_n*2>=a_t:null},
+  ];
+  $("#verdicts").innerHTML=rows.map(r=>{const na=r.na||r.ok===null;const cls=na?"na":r.ok?"ok":"bad";const lab=na?"尚無資料":r.ok?"達標":"未達";
+    return `<div class="verdict"><div class="sw" style="background:${r.sw}"></div><div><div class="t">${r.t} <span class="serif" style="color:var(--walnut);font-weight:600">${r.q}</span></div><div class="d">${r.d}</div></div><span class="pill ${cls}">${lab}</span></div>`;}).join("");
+  const scored=rows.filter(r=>!(r.na||r.ok===null));const passed=scored.filter(r=>r.ok).length;
+  $("#verdictSummary").innerHTML=scored.length?`<b>${passed} / ${scored.length}</b> 項達標　${passed>=4?"→ 三個月合作<b style='color:var(--ok)'>有效</b>，進入流程標準化與制度化階段":passed>=2?"→ <b style='color:var(--brass)'>個人有效、組織未成形</b>，續約重點放在可複製與制度":"→ 目前<b style='color:var(--bad)'>未達有效門檻</b>，先回頭找卡點"}`:"";
+  $("#sResp").textContent=N;$("#sWf").textContent=wfDone.length;$("#sSave").textContent=saveN?Math.round(saveSum/saveN*100):0;
+  $("#respList").innerHTML=N?responses.slice().sort((a,b)=>b.ts-a.ts).map(r=>`<div class="resp"><b>${r.name}</b>${r.dept?"｜"+r.dept:""}　${["q1","q10","q20"].map(q=>q.toUpperCase()+"："+(r.answers[q]||"—")).join("　")}</div>`).join(""):`<div style="font-size:12px;color:var(--mute)">尚無學員填答，判定將採用主持人舉手計數。</div>`;
+}
+
+// ---------- 儲存 / 同步 ----------
+function saveLocal(){try{localStorage.setItem(LS,JSON.stringify({session,responses:db?[]:responses}));}catch(e){}}
+function loadLocal(){try{const d=JSON.parse(localStorage.getItem(LS)||"null");if(d){if(d.session)session=Object.assign(session,d.session);if(d.responses)responses=d.responses;}}catch(e){}}
+function scheduleSave(){saveLocal();if(!sessionRef)return;clearTimeout(saveTimer);saveTimer=setTimeout(async()=>{try{await sessionRef.set({...session,updatedAt:Date.now()});}catch(e){setStatus(false,"同步失敗："+(e.code||""));}},600);}
+async function initDb(){
+  try{
+    if(!window.claude||!window.claude.use)throw 0;
+    db=await window.claude.use("db");
+    if(!db)throw 0;
+    sessionRef=db.doc("session/main");
+    sessionRef.onSnapshot(s=>{if(s.exists&&!s.metadata.hasPendingWrites){const d=s.data();session.tallies=d.tallies||{};session.notes=d.notes||{};if(d.workflows)session.workflows=d.workflows;renderHost();renderSheet();renderVerdict();}},e=>setStatus(false,"同步中斷"));
+    db.collection("responses").onSnapshot(qs=>{responses=qs.docs.map(x=>({id:x.id,...x.data()}));renderVerdict();},e=>setStatus(false,"同步中斷"));
+    setStatus(true,"已連線，多人即時同步");
+    downloads=await window.claude.use("downloads");
+  }catch(e){db=null;setStatus(false,"單機模式（本裝置紀錄）");}
+}
+
+// ---------- 匯出 / 清空 ----------
+function buildCsv(){
+  const L=[];L.push("類型,項目,欄位,值");
+  ALLQ.forEach(q=>{Object.entries(session.tallies[q.id]||{}).forEach(([o,c])=>L.push(`舉手計數,${q.id},${csv(o)},${c}`));if(session.notes[q.id])L.push(`現場紀錄,${q.id},備註,${csv(session.notes[q.id])}`);});
+  FLOWS.forEach((f,i)=>{const w=session.workflows[i];L.push(`盤點,${csv(f)},過去,${csv(w.before)}`);L.push(`盤點,${csv(f)},AI後,${csv(w.after)}`);L.push(`盤點,${csv(f)},品質,${csv(w.quality)}`);if(w.note)L.push(`盤點,${csv(f)},備註,${csv(w.note)}`);});
+  responses.forEach(r=>{Object.entries(r.answers).forEach(([k,v])=>L.push(`填答,${csv(r.name+(r.dept?"/"+r.dept:""))},${k},${csv(Array.isArray(v)?v.join("；"):v)}`));});
+  return "﻿"+L.join("\n");
+}
+function csv(s){s=String(s??"");return /[",\n]/.test(s)?`"${s.replace(/"/g,'""')}"`:s;}
+function downloadBlob(fn,data){
+  const blob=new Blob([data],{type:"text/csv;charset=utf-8"});
+  const url=URL.createObjectURL(blob);
+  const a=document.createElement("a");a.href=url;a.download=fn;document.body.appendChild(a);a.click();a.remove();
+  setTimeout(()=>URL.revokeObjectURL(url),1000);
+}
+$("#exportBtn").onclick=async()=>{
+  const data=buildCsv();const fn="創空間_AI檢核紀錄.csv";
+  if(downloads){try{await downloads.save({filename:fn,data});toast("已匯出");}catch(e){if(e.code!=="declined")toast("匯出失敗");}return;}
+  try{downloadBlob(fn,data);toast("已匯出");}
+  catch(e){try{await navigator.clipboard.writeText(data);toast("下載不可用，已複製 CSV 到剪貼簿");}catch(e2){toast("無法匯出");}}
+};
+$("#resetBtn").onclick=async()=>{
+  if(!confirm("確定清空本場所有紀錄與填答？此動作無法復原。"))return;
+  session={tallies:{},notes:{},workflows:FLOWS.map(()=>({before:"",after:"",quality:"",note:""}))};
+  if(db){try{await sessionRef.set({...session,updatedAt:Date.now()});const qs=await db.collection("responses").get();for(const d of qs.docs){await db.doc("responses/"+d.id).delete();}}catch(e){toast("部分清除失敗");}}
+  else responses=[];
+  saveLocal();renderHost();renderSheet();renderVerdict();toast("已清空");
+};
+
+// ---------- 導覽 ----------
+document.querySelectorAll("nav button").forEach(b=>b.onclick=()=>{
+  document.querySelectorAll("nav button").forEach(x=>x.classList.remove("on"));b.classList.add("on");
+  document.querySelectorAll(".view").forEach(v=>v.classList.remove("on"));$("#v-"+b.dataset.v).classList.add("on");
+  window.scrollTo(0,0);
+});
+
+loadLocal();renderHost();renderForm();renderSheet();renderVerdict();
+initDb();
+</script>
+</body>
+</html>
