@@ -1,0 +1,792 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>棍子教練百科 ─ 林昆良 Bryce Lin ｜ 湛智有限公司</title>
+<meta name="description" content="棍子教練百科：AI 企業教練棍子（林昆良 Bryce Lin）的完整資料庫 ─ 經歷、合作模式、課程模組、代表案例、合作品牌、講師簡介範本、常見問答與聯絡方式，一頁快速查詢。" />
+<meta name="robots" content="index, follow" />
+<link rel="canonical" href="https://khps05515.github.io/zhanzhi-site/wiki.html" />
+<meta property="og:type" content="profile" />
+<meta property="og:url" content="https://khps05515.github.io/zhanzhi-site/wiki.html" />
+<meta property="og:title" content="棍子教練百科 ─ 林昆良 Bryce Lin" />
+<meta property="og:description" content="AI 企業教練棍子的經歷、課程、案例、講師簡介與聯絡方式，一頁快速查詢。" />
+<meta property="og:image" content="https://khps05515.github.io/zhanzhi-site/assets/media/image1.png" />
+<meta property="og:locale" content="zh_TW" />
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "ProfilePage",
+  "name": "棍子教練百科",
+  "url": "https://khps05515.github.io/zhanzhi-site/wiki.html",
+  "mainEntity": {
+    "@type": "Person",
+    "name": "林昆良",
+    "alternateName": ["Bryce Lin", "棍子", "棍子教練"],
+    "jobTitle": "AI 企業教練",
+    "image": "https://khps05515.github.io/zhanzhi-site/assets/media/image1.png",
+    "worksFor": { "@type": "Organization", "name": "湛智有限公司" },
+    "knowsAbout": ["AI 企業培訓", "AI 顧問", "AI 工作流程設計", "企業 AI 導入", "AI 內容生成"],
+    "email": "mailto:khps05515@gmail.com",
+    "telephone": "+886-926-761-069",
+    "sameAs": ["https://www.facebook.com/lin.kun.liang.592453"]
+  }
+}
+</script>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@300;400;500;700;900&family=Noto+Serif+TC:wght@500;700;900&family=Cormorant+Garamond:ital,wght@0,400;0,600;1,500&family=Space+Grotesk:wght@400;500;700&display=swap" rel="stylesheet">
+
+<link rel="stylesheet" href="styles.css" />
+<style>
+/* ===== Wiki page specific ===== */
+.wiki-hero{
+  background: var(--bg-deep);
+  color:#fff;
+  padding: 150px 0 56px;
+  position:relative;overflow:hidden;
+}
+.wiki-hero::before{
+  content:"";position:absolute;inset:0;
+  background:
+    radial-gradient(ellipse at 20% 30%, rgba(30,77,139,.4) 0%, transparent 55%),
+    radial-gradient(ellipse at 85% 75%, rgba(125,180,240,.16) 0%, transparent 50%);
+}
+.wiki-hero .container{position:relative;z-index:1}
+.wiki-hero .kicker{
+  color:var(--gold);
+  border-color: rgba(125,180,240,.35);
+  background: rgba(125,180,240,.1);
+}
+.wiki-hero__title{
+  font-family:var(--font-display);
+  font-size: clamp(34px, 5vw, 58px);
+  font-weight:700;line-height:1.15;
+  margin:18px 0 12px;color:#fff;
+}
+.wiki-hero__title em{
+  font-style:italic;color:var(--gold);
+  font-family:"Cormorant Garamond", var(--font-display);
+}
+.wiki-hero__lead{
+  font-size:16px;color:rgba(255,255,255,.8);
+  max-width:680px;line-height:1.85;margin:0 0 28px;
+}
+
+/* search */
+.wsearch{position:relative;max-width:680px}
+.wsearch input{
+  width:100%;
+  padding:16px 20px 16px 50px;
+  border-radius:999px;
+  border:1.5px solid rgba(125,180,240,.35);
+  background:rgba(255,255,255,.08);
+  color:#fff;font:inherit;font-size:16px;
+  outline:none;transition:border-color .2s, background .2s;
+}
+.wsearch input::placeholder{color:rgba(255,255,255,.55)}
+.wsearch input:focus{border-color:var(--gold);background:rgba(255,255,255,.12)}
+.wsearch__icon{
+  position:absolute;left:20px;top:50%;transform:translateY(-50%);
+  font-size:17px;opacity:.7;pointer-events:none;
+}
+.wsearch__hint{margin-top:12px;display:flex;gap:8px;flex-wrap:wrap}
+.wsearch__hint button{
+  font-size:13px;padding:5px 13px;border-radius:999px;
+  border:1px solid rgba(125,180,240,.3);
+  color:rgba(255,255,255,.8);
+}
+.wsearch__hint button:hover{border-color:var(--gold);color:#fff}
+
+.wresults{
+  background:#fff;color:var(--ink);
+  border-radius:var(--radius-sm);
+  margin-top:14px;max-width:680px;
+  box-shadow:var(--shadow-lg);
+  max-height:420px;overflow:auto;
+  display:none;
+}
+.wresults.is-open{display:block}
+.wresults__item{
+  display:block;padding:14px 20px;
+  border-bottom:1px solid var(--line);
+}
+.wresults__item:last-child{border-bottom:0}
+.wresults__item:hover{background:var(--bg-paper)}
+.wresults__type{
+  font-family:var(--font-mono);font-size:11px;letter-spacing:.12em;
+  color:var(--brand);font-weight:700;text-transform:uppercase;
+}
+.wresults__title{display:block;font-weight:700;font-size:15px;margin:2px 0}
+.wresults__snip{display:block;font-size:13.5px;color:var(--ink-soft);line-height:1.7}
+.wresults mark{background:var(--peach);color:var(--brand-deep);padding:0 2px;border-radius:3px}
+.wresults__empty{padding:18px 20px;color:var(--ink-mute);font-size:14px}
+
+/* layout */
+.wiki-body{background:var(--bg-cream);padding:48px 0 110px}
+.wiki-layout{
+  display:grid;
+  grid-template-columns: 220px minmax(0,1fr);
+  gap:48px;
+}
+.wtoc{
+  position:sticky;top:96px;align-self:start;
+  max-height:calc(100vh - 120px);overflow:auto;
+  font-size:14px;
+}
+.wtoc__head{
+  font-family:var(--font-mono);font-size:12px;letter-spacing:.14em;
+  color:var(--ink-mute);font-weight:700;margin-bottom:10px;
+}
+.wtoc ol{list-style:none;margin:0;padding:0;counter-reset:toc}
+.wtoc li{counter-increment:toc}
+.wtoc a{
+  display:block;padding:6px 10px;border-radius:8px;
+  color:var(--ink-soft);border-left:2px solid transparent;
+}
+.wtoc a::before{
+  content:counter(toc) ". ";
+  font-family:var(--font-mono);color:var(--ink-mute);font-size:12px;
+}
+.wtoc a:hover{background:var(--bg-paper);color:var(--brand)}
+.wtoc a.is-active{color:var(--brand);font-weight:700;border-left-color:var(--brand);background:var(--bg-paper)}
+
+.warticle{min-width:0;font-size:15.5px;color:var(--ink-soft);line-height:1.95}
+.warticle h2{
+  font-family:var(--font-display);
+  font-size:26px;color:var(--ink);
+  margin:52px 0 16px;padding-bottom:10px;
+  border-bottom:1px solid var(--line);
+  scroll-margin-top:90px;
+}
+.warticle h2:first-of-type{margin-top:0}
+.warticle h3{font-size:17px;color:var(--ink);margin:26px 0 8px}
+.warticle p{margin:0 0 14px}
+.warticle a:not(.btn){color:var(--brand);text-decoration:underline;text-underline-offset:3px}
+.warticle strong{color:var(--ink)}
+.warticle ul{padding-left:1.3em;margin:0 0 14px}
+
+.wmeta{
+  font-size:13px;color:var(--ink-mute);margin:0 0 22px;
+  font-family:var(--font-mono);letter-spacing:.04em;
+}
+
+/* infobox */
+.winfobox{
+  float:right;width:300px;
+  margin:0 0 24px 32px;
+  border:1px solid var(--line);
+  border-radius:var(--radius-sm);
+  background:var(--bg-paper);
+  font-size:13.5px;line-height:1.7;
+  overflow:hidden;
+}
+.winfobox__title{
+  background:var(--bg-deep);color:#fff;text-align:center;
+  font-family:var(--font-display);font-weight:700;font-size:18px;
+  padding:12px;
+}
+.winfobox img{width:100%;aspect-ratio:1/1;object-fit:cover}
+.winfobox__cap{text-align:center;font-size:12px;color:var(--ink-mute);padding:6px 10px 2px}
+.winfobox table{width:100%;border-collapse:collapse}
+.winfobox th,.winfobox td{padding:8px 12px;vertical-align:top;border-top:1px solid var(--line);text-align:left}
+.winfobox th{width:84px;color:var(--ink);font-weight:700;white-space:nowrap}
+.winfobox td{color:var(--ink-soft)}
+.winfobox td a{color:var(--brand)}
+
+/* tables */
+.wtable{width:100%;border-collapse:collapse;margin:8px 0 18px;font-size:14.5px}
+.wtable th,.wtable td{border:1px solid var(--line);padding:10px 14px;text-align:left;vertical-align:top}
+.wtable thead th{background:var(--bg-paper);color:var(--ink);font-weight:700}
+.wtable td:first-child{color:var(--ink);font-weight:600;white-space:nowrap}
+.wtable-wrap{overflow-x:auto}
+
+.wtags{display:flex;flex-wrap:wrap;gap:8px;margin:6px 0 18px;padding:0;list-style:none}
+.wtags li{
+  font-size:14px;padding:5px 14px;border-radius:999px;
+  background:var(--peach);color:var(--brand-deep);
+}
+
+/* bio copy cards */
+.wbio{
+  border:1px solid var(--line);border-radius:var(--radius-sm);
+  padding:18px 20px;margin:0 0 16px;background:#fff;
+}
+.wbio__head{
+  display:flex;justify-content:space-between;align-items:center;gap:10px;
+  margin-bottom:8px;
+}
+.wbio__label{font-weight:700;color:var(--ink);font-size:15px}
+.wbio__label small{font-weight:400;color:var(--ink-mute);margin-left:6px}
+.wbio__copy{
+  font-size:13px;font-weight:600;color:var(--brand);
+  border:1.5px solid var(--brand);border-radius:999px;padding:4px 14px;
+  white-space:nowrap;
+}
+.wbio__copy:hover{background:var(--brand);color:#fff}
+.wbio__copy.is-done{background:var(--brand);color:#fff}
+.wbio__text{margin:0;white-space:pre-line}
+
+/* notes / cards */
+.wnote{
+  border-left:3px solid var(--brand);
+  background:var(--bg-paper);
+  padding:12px 18px;border-radius:0 var(--radius-sm) var(--radius-sm) 0;
+  margin:0 0 18px;font-size:14.5px;
+}
+.wlist{list-style:none;padding:0;margin:0 0 16px}
+.wlist li{padding:10px 0;border-bottom:1px dashed var(--line)}
+.wlist li:last-child{border-bottom:0}
+.wlist__date{
+  font-family:var(--font-mono);font-size:12.5px;color:var(--brand);
+  font-weight:600;margin-right:10px;
+}
+.wquote{margin:0 0 14px;padding:14px 18px;border:1px solid var(--line);border-radius:var(--radius-sm)}
+.wquote p{margin:0 0 6px;font-size:14.5px}
+.wquote cite{font-style:normal;font-size:13px;color:var(--ink-mute)}
+
+.wfaq details{border-bottom:1px solid var(--line);padding:12px 0}
+.wfaq summary{cursor:pointer;font-weight:700;color:var(--ink);list-style:none}
+.wfaq summary::-webkit-details-marker{display:none}
+.wfaq summary::before{content:"Q "; color:var(--brand);font-family:var(--font-mono)}
+.wfaq details p{margin:8px 0 0}
+
+.wflash{outline:3px solid var(--gold);outline-offset:6px;border-radius:6px;transition:outline-color 1.2s}
+
+.wtop{
+  position:fixed;right:22px;bottom:22px;z-index:20;
+  width:46px;height:46px;border-radius:50%;
+  background:var(--brand);color:#fff;font-size:18px;
+  box-shadow:var(--shadow-md);
+  opacity:0;pointer-events:none;transition:opacity .3s;
+}
+.wtop.is-show{opacity:1;pointer-events:auto}
+
+@media (max-width: 980px){
+  .wiki-layout{grid-template-columns:1fr;gap:24px}
+  .wtoc{position:static;max-height:none;border:1px solid var(--line);border-radius:var(--radius-sm);padding:14px}
+  .wtoc ol{columns:2;column-gap:12px}
+}
+@media (max-width: 720px){
+  .wiki-hero{padding:120px 0 44px}
+  .winfobox{float:none;width:100%;margin:0 0 24px}
+  .winfobox img{aspect-ratio:4/3}
+  .wtoc ol{columns:1}
+  .warticle h2{font-size:22px}
+}
+@media print{
+  .nav,.wiki-hero,.wtoc,.wtop,.footer,.wbio__copy{display:none !important}
+  .wiki-layout{display:block}
+}
+</style>
+</head>
+<body>
+
+<!-- ====== Navigation ====== -->
+<header class="nav is-stuck" id="nav">
+  <div class="nav__inner">
+    <a href="index.html" class="nav__brand">
+      <span class="nav__mark">湛</span>
+      <span class="nav__name">
+        <span class="nav__name-zh">湛智有限公司</span>
+        <span class="nav__name-en">AI BUSINESS COACH</span>
+      </span>
+    </a>
+    <nav class="nav__links">
+      <a href="index.html#about">關於棍子</a>
+      <a href="index.html#services">合作模式</a>
+      <a href="index.html#showcase">口碑見證</a>
+      <a href="journal.html">工作日誌</a>
+      <a href="wiki.html" style="color:var(--brand);font-weight:700">棍子百科</a>
+      <a href="index.html#contact" class="nav__cta">立即聯繫</a>
+    </nav>
+    <button class="nav__menu" aria-label="開啟選單" id="navToggle">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+</header>
+
+<!-- ====== Wiki Hero + Search ====== -->
+<section class="wiki-hero">
+  <div class="container">
+    <span class="kicker">STICK COACH WIKI</span>
+    <h1 class="wiki-hero__title">棍子教練<em>百科</em></h1>
+    <p class="wiki-hero__lead">
+      需要棍子的資料時，來這裡找就對了 ─
+      講師簡介、經歷、課程、案例、合作品牌、聯絡方式，一頁全部查得到。
+      也可以直接搜尋 140+ 篇工作日誌與學員見證。
+    </p>
+    <div class="wsearch">
+      <span class="wsearch__icon">🔍</span>
+      <input type="search" id="wsearch" placeholder="搜尋：講師簡介、課程、NotebookLM、製造業、聯絡方式……" autocomplete="off" />
+    </div>
+    <div class="wsearch__hint" id="wsearchHint">
+      <button type="button" data-q="講師簡介">講師簡介</button>
+      <button type="button" data-q="課程">課程模組</button>
+      <button type="button" data-q="商業周刊">代表案例</button>
+      <button type="button" data-q="聯絡">聯絡方式</button>
+      <button type="button" data-q="數字人">數字人</button>
+    </div>
+    <div class="wresults" id="wresults" role="listbox"></div>
+  </div>
+</section>
+
+<!-- ====== Wiki Article ====== -->
+<section class="wiki-body">
+  <div class="container wiki-layout">
+
+    <aside class="wtoc" aria-label="目錄">
+      <div class="wtoc__head">CONTENTS 目錄</div>
+      <ol id="wtocList"></ol>
+    </aside>
+
+    <article class="warticle" id="warticle">
+
+      <aside class="winfobox" aria-label="基本資料">
+        <div class="winfobox__title">棍子 林昆良</div>
+        <img src="assets/media/image1.png" alt="棍子 林昆良 Bryce Lin" />
+        <div class="winfobox__cap">AI 企業教練 ／ 湛智有限公司 負責人</div>
+        <table>
+          <tr><th>本名</th><td>林昆良</td></tr>
+          <tr><th>英文名</th><td>Bryce Lin</td></tr>
+          <tr><th>稱號</th><td>棍子、棍子教練</td></tr>
+          <tr><th>職業</th><td>AI 企業教練、AI 顧問、講師</td></tr>
+          <tr><th>現任</th><td>湛智有限公司 負責人</td></tr>
+          <tr><th>前經歷</th><td>廣告與創意產業（品牌提案、內容策略、跨部門整合）</td></tr>
+          <tr><th>專長</th><td>企業 AI 工作流程導入、AI 人才培訓、AI 應用陪跑、AI 內容生成</td></tr>
+          <tr><th>合作品牌</th><td>40+ 品牌與企業，橫跨 15+ 產業</td></tr>
+          <tr><th>代表成就</th><td>輔導優織隆企業（UKL）獲《商業周刊》AI 百強優選</td></tr>
+          <tr><th>電話</th><td><a href="tel:0926761069">0926-761-069</a></td></tr>
+          <tr><th>Email</th><td><a href="mailto:khps05515@gmail.com">khps05515@gmail.com</a></td></tr>
+          <tr><th>LINE</th><td><a href="https://line.me/ti/p/~khps05515" target="_blank" rel="noopener">khps05515</a></td></tr>
+          <tr><th>Facebook</th><td><a href="https://www.facebook.com/lin.kun.liang.592453" target="_blank" rel="noopener">林昆良</a></td></tr>
+          <tr><th>官網</th><td><a href="index.html">湛智有限公司</a></td></tr>
+        </table>
+      </aside>
+
+      <p class="wmeta">最後更新：2026-09-25 ・ 資料來源：湛智官網、工作日誌、學員公開貼文</p>
+
+      <p>
+        <strong>林昆良</strong>（英文名 <strong>Bryce Lin</strong>，暱稱「<strong>棍子</strong>」「<strong>棍子教練</strong>」），
+        台灣 <strong>AI 企業教練</strong>，<strong>湛智有限公司</strong>負責人。
+        專注協助企業把 AI 真正落地到日常工作現場，以「駐點教練制」深入企業輔導，
+        服務範圍涵蓋企業客製課程、工作流程重建、一對一陪跑、公開課包班、活動設計與 AI 內容生成。
+        至今已陪伴 40 多個品牌、橫跨 15 個以上產業，其中輔導的優織隆企業（UKL）於導入 AI 工作流程後，
+        獲《商業周刊》AI 百強優選肯定。
+      </p>
+      <p>其核心理念是：<strong>「陪伴你的團隊學會善用 AI，把時間用在真正有價值的事上。」</strong></p>
+
+      <h2 id="names">名稱與稱號</h2>
+      <ul>
+        <li><strong>林昆良</strong>：本名，正式文件、合約、講師資料使用。</li>
+        <li><strong>Bryce Lin</strong>：英文名，用於英文簡介、名片與國際場合。</li>
+        <li><strong>棍子／棍子教練</strong>：學員與合作夥伴最常用的稱呼，也是社群上的個人品牌名稱。</li>
+        <li><strong>湛智有限公司</strong>（ZhanZhi Co., Ltd.）：所經營的公司，英文副標「AI Business Coach」。</li>
+      </ul>
+
+      <h2 id="career">經歷</h2>
+      <h3>廣告與創意產業時期</h3>
+      <p>
+        過去任職於廣告與創意產業，長期參與品牌提案、內容策略與跨部門整合，
+        累積了把複雜需求拆解成可執行方案、並與不同部門協作的能力。
+      </p>
+      <h3>轉型 AI 企業教練</h3>
+      <p>
+        近年專注於企業 AI 工作流程導入、AI 人才培訓與組織內部 AI 應用陪跑。
+        自 2025 年 6 月起持續於 Facebook 撰寫「AI 工作日誌」，記錄企業輔導現場、課程心得、AI 工具實測與創業路上的思考。
+      </p>
+      <h3>湛智有限公司</h3>
+      <p>
+        目前擔任湛智有限公司負責人，服務對象涵蓋製造業、零售業、醫療體系、建設產業、室內設計、電商、
+        教育訓練、資訊服務、品牌行銷與整合傳播等領域。
+      </p>
+
+      <h2 id="philosophy">教學理念與方法</h2>
+      <h3>三大特色</h3>
+      <ul>
+        <li><strong>駐點教練制</strong>：深入現場輔導，不是一次性課程，強調實務落地。</li>
+        <li><strong>以人為本導向</strong>：導入 AI 是為了「還時間給人」，重視人與工作的價值轉化。</li>
+        <li><strong>整合式落地規劃</strong>：深入了解產業需求，串接內訓、KPI 評估與文化變革策略，量身訂製教材。</li>
+      </ul>
+      <h3>四步服務流程</h3>
+      <div class="wtable-wrap">
+      <table class="wtable">
+        <thead><tr><th>步驟</th><th>內容</th></tr></thead>
+        <tbody>
+          <tr><td>01 深入了解產業需求</td><td>從訪談、現場觀察到內部流程盤點，先看清楚問題，再決定要導入什麼。</td></tr>
+          <tr><td>02 量身打造專屬教材</td><td>串接內訓、KPI 與文化變革策略，從工作情境出發，避免流於技術堆砌。</td></tr>
+          <tr><td>03 體驗式互動授課</td><td>學員當下動手做、產出實際成品，當天就帶得走。</td></tr>
+          <tr><td>04 課後實務應用輔導</td><td>持續陪跑、線上即時答疑，協助學員把所學真正用在每日工作。</td></tr>
+        </tbody>
+      </table>
+      </div>
+      <h3>常見觀點</h3>
+      <ul>
+        <li>多數人不是沒聽過 AI，而是<strong>沒有時間學習</strong>。</li>
+        <li>AI 對資深工作者最大的價值，不是把人訓練成更會用電腦的人，而是讓他重新擁有一個「<strong>數位助理團隊</strong>」。</li>
+        <li>AI 導入最難的，是當 AI 越來越會做之後，如何重新回答「<strong>人的價值到底在哪裡</strong>」。</li>
+      </ul>
+
+      <h2 id="services">合作模式</h2>
+      <div class="wtable-wrap">
+      <table class="wtable">
+        <thead><tr><th>模式</th><th>說明</th><th>特色</th></tr></thead>
+        <tbody>
+          <tr><td>01 企業客製化課程</td><td>以企業實際情境為主軸，從文案、會議記錄、影像生成到資料分析，自由組合課程選單。</td><td>1–2 小時、人數不限、當週線上陪跑</td></tr>
+          <tr><td>02 企業重建工作流程</td><td>以四大步驟組織級導入 AI 進設計、開發或營運流程。</td><td>流程診斷 → 工具選型 → SOP 重塑 → 陪跑驗收</td></tr>
+          <tr><td>03 個人陪跑教練</td><td>一對一深度陪跑，量身規劃 AI 學習路徑。</td><td>一對一、客製學習路徑、即時答疑</td></tr>
+          <tr><td>04 公開課程培訓包班</td><td>補齊資訊落差，不再陷入 AI 更新焦慮；可依產業需求包班開課。</td><td>產業包班、定期開課</td></tr>
+          <tr><td>05 客製活動設計</td><td>公司團建 AI 工作坊、主題演講與 AI 創意活動規劃。</td><td>團建工作坊、主題演講、創意活動</td></tr>
+          <tr><td>06 內容生成服務</td><td>商業品牌廣告、數字人帶貨影片、廣告素材設計，從腳本到成片整套以 AI 生成。</td><td>品牌廣告、數字人、口播影片、廣告素材</td></tr>
+        </tbody>
+      </table>
+      </div>
+
+      <h2 id="modules">課程模組</h2>
+      <p>可自由拼湊與設計課程選單，上課時數約 1–2 小時、人數不限，搭配當週線上陪跑。</p>
+      <ul class="wtags">
+        <li>📝 文案與內容撰寫</li><li>🎬 影音生成</li><li>✂️ 影音剪接</li><li>📊 簡報生成</li>
+        <li>🎨 圖像生成</li><li>📐 設計提案輔助</li><li>📈 資料分析</li><li>🎵 廣告歌曲與音樂創作</li>
+        <li>🧑‍💼 AI 數字人</li><li>📝 AI 會議記錄</li><li>📚 AI 知識庫建立</li><li>🤖 AI 客製助理</li>
+        <li>📦 AI 專案管理</li><li>🗂️ AI 行政工作</li><li>💬 AI 輔助客服</li><li>⚡ Vibe Coding</li>
+      </ul>
+
+      <h2 id="cases">代表案例</h2>
+      <div class="wtable-wrap">
+      <table class="wtable">
+        <thead><tr><th>案例</th><th>成果</th></tr></thead>
+        <tbody>
+          <tr><td>優織隆企業（UKL）</td><td>導入 AI 工作流程後，獲《商業周刊》AI 百強優選肯定。</td></tr>
+          <tr><td>紡織業設計開發流程</td><td>透過工作流程重建，設計開發時程由 3–10 天縮短至 1–2 天。</td></tr>
+          <tr><td>物流業採購（個人陪跑）</td><td>學員在公司舉辦的 AI 應用競賽中奪得冠軍（NotebookLM + Gamma 組合應用）。</td></tr>
+          <tr><td>新潤建設機構</td><td>品牌影片《新潤，讓服務潤進人心》客戶合作實例。</td></tr>
+          <tr><td>Zolée 洗沐系列</td><td>AI 生成品牌廣告（直幅）。</td></tr>
+        </tbody>
+      </table>
+      </div>
+      <p>更多影片與現場短影音請見官網 <a href="index.html#showcase">口碑見證</a>。</p>
+
+      <h2 id="clients">合作品牌與產業</h2>
+      <h3>合作品牌（部分）</h3>
+      <ul class="wtags">
+        <li>優織隆企業 UKL</li><li>樂衍</li><li>昇恆昌</li><li>桃園機場</li><li>台灣肥料</li>
+        <li>新潤興業</li><li>新潤建設</li><li>創空間集團</li><li>台北設計建材中心</li>
+        <li>中國生產力中心</li><li>網商協會</li><li>繽紛室內設計</li><li>極象設計行銷</li>
+        <li>緯恩整合行銷傳播</li><li>台灣維達</li><li>銓勝科技</li><li>囍閱資訊</li>
+        <li>聖合牙醫</li><li>奧本電剪</li>
+      </ul>
+      <h3>服務產業</h3>
+      <ul class="wtags">
+        <li>製造業</li><li>零售業</li><li>醫療體系</li><li>建設產業</li><li>室內設計</li><li>電商</li>
+        <li>教育訓練</li><li>資訊服務</li><li>品牌行銷</li><li>整合傳播</li><li>紡織</li><li>物流</li>
+        <li>機場零售</li><li>建材</li><li>牙醫診所</li>
+      </ul>
+
+      <h2 id="bio">講師簡介範本</h2>
+      <p class="wnote">主辦單位、活動海報、課程頁面需要講師介紹時，按「複製」即可直接貼上使用。</p>
+
+      <div class="wbio">
+        <div class="wbio__head">
+          <span class="wbio__label">一句話版<small>約 30 字</small></span>
+          <button class="wbio__copy" type="button">複製</button>
+        </div>
+        <p class="wbio__text">棍子（林昆良），AI 企業教練、湛智有限公司負責人，專注協助企業把 AI 真正落地。</p>
+      </div>
+
+      <div class="wbio">
+        <div class="wbio__head">
+          <span class="wbio__label">短版<small>約 100 字</small></span>
+          <button class="wbio__copy" type="button">複製</button>
+        </div>
+        <p class="wbio__text">林昆良（棍子教練），湛智有限公司負責人、AI 企業教練。出身廣告與創意產業，現專注於企業 AI 工作流程導入與人才培訓，已陪伴 40+ 品牌、橫跨 15+ 產業，輔導案例獲《商業周刊》AI 百強優選肯定。</p>
+      </div>
+
+      <div class="wbio">
+        <div class="wbio__head">
+          <span class="wbio__label">完整版<small>約 250 字</small></span>
+          <button class="wbio__copy" type="button">複製</button>
+        </div>
+        <p class="wbio__text">林昆良（Bryce Lin），學員暱稱「棍子教練」，現任湛智有限公司負責人、AI 企業教練。
+過去任職於廣告與創意產業，長期參與品牌提案、內容策略與跨部門整合；近年專注於企業 AI 工作流程導入、AI 人才培訓與組織內部 AI 應用陪跑，以「駐點教練制」深入企業現場，協助團隊把 AI 真正落地到日常工作。
+服務對象涵蓋製造、零售、醫療、建設、室內設計、電商、教育訓練、資訊服務與品牌行銷等領域，已陪伴 40+ 品牌與企業。代表案例包括協助優織隆企業（UKL）導入 AI 工作流程並獲《商業周刊》AI 百強優選，以及將紡織業設計開發流程由 3–10 天縮短至 1–2 天。
+理念：「陪伴你的團隊學會善用 AI，把時間用在真正有價值的事上。」</p>
+      </div>
+
+      <div class="wbio">
+        <div class="wbio__head">
+          <span class="wbio__label">English Bio<small>approx. 60 words</small></span>
+          <button class="wbio__copy" type="button">複製</button>
+        </div>
+        <p class="wbio__text">Bryce Lin ("Coach Stick") is an AI business coach and founder of ZhanZhi Co., Ltd. in Taiwan. With a background in advertising and creative strategy, he helps companies embed AI into everyday workflows through on-site coaching and hands-on training. He has worked with 40+ brands across 15+ industries, including a client recognized in Business Weekly's AI Top 100.</p>
+      </div>
+
+      <h2 id="testimonials">學員評價</h2>
+      <p>官網收錄 <strong id="tCount">多則</strong> 學員與合作夥伴在 Facebook 上親筆寫下的回饋，以下為精選：</p>
+      <div id="tList"></div>
+      <p><a href="index.html#showcase">看全部學員見證 →</a></p>
+
+      <h2 id="journal">工作日誌</h2>
+      <p>自 <span id="jSince">2025 年</span> 起持續記錄，共 <strong id="jCount">100+</strong> 篇。最新幾篇：</p>
+      <ul class="wlist" id="jList"></ul>
+      <p><a href="journal.html">看全部工作日誌 →</a>　也可以用上方搜尋框直接搜尋日誌內容。</p>
+
+      <h2 id="faq">常見問答</h2>
+      <div class="wfaq">
+        <details>
+          <summary>我們公司完全沒有 AI 基礎，可以找棍子嗎？</summary>
+          <p>可以。課程從企業實際工作情境出發，學員當下動手做、產出成品，零基礎也能上手；課後還有線上陪跑答疑。</p>
+        </details>
+        <details>
+          <summary>一堂課多久？人數有限制嗎？</summary>
+          <p>企業客製化課程每堂約 1–2 小時，人數不限，並搭配當週線上陪跑。</p>
+        </details>
+        <details>
+          <summary>只上課和「重建工作流程」有什麼不同？</summary>
+          <p>課程著重技能學習；工作流程重建是組織級導入，經過流程診斷、工具選型、SOP 重塑、陪跑驗收四步驟，直接改造一條實際工作流程。</p>
+        </details>
+        <details>
+          <summary>個人可以找棍子上課嗎？</summary>
+          <p>可以，「個人陪跑教練」提供一對一深度陪跑，量身規劃 AI 學習路徑並即時答疑。</p>
+        </details>
+        <details>
+          <summary>可以請棍子演講或辦團建活動嗎？</summary>
+          <p>可以，提供 AI 主題演講、公司團建 AI 工作坊與其他 AI 創意活動規劃。</p>
+        </details>
+        <details>
+          <summary>除了教學，也能幫忙做影片或廣告嗎？</summary>
+          <p>可以，「內容生成服務」提供商業品牌廣告、數字人帶貨影片、口播影片與廣告素材設計，整套以 AI 生成。</p>
+        </details>
+        <details>
+          <summary>怎麼詢問報價與檔期？</summary>
+          <p>請透過電話、Email 或 LINE 直接聯繫棍子，說明產業、人數、需求與希望日期，會依需求量身規劃。</p>
+        </details>
+      </div>
+
+      <h2 id="contact">聯絡方式</h2>
+      <div class="wtable-wrap">
+      <table class="wtable">
+        <tbody>
+          <tr><td>📞 電話</td><td><a href="tel:0926761069">0926-761-069</a></td></tr>
+          <tr><td>✉️ Email</td><td><a href="mailto:khps05515@gmail.com">khps05515@gmail.com</a></td></tr>
+          <tr><td>💬 LINE ID</td><td><a href="https://line.me/ti/p/~khps05515" target="_blank" rel="noopener">khps05515</a></td></tr>
+          <tr><td>📘 Facebook</td><td><a href="https://www.facebook.com/lin.kun.liang.592453" target="_blank" rel="noopener">林昆良</a></td></tr>
+        </tbody>
+      </table>
+      </div>
+
+      <h2 id="links">相關連結</h2>
+      <ul>
+        <li><a href="index.html">湛智有限公司 官方網站</a></li>
+        <li><a href="journal.html">AI 工作日誌</a></li>
+        <li><a href="index.html#showcase">口碑見證與作品</a></li>
+        <li><a href="index.html#events">活動剪影</a></li>
+      </ul>
+
+    </article>
+  </div>
+</section>
+
+<button class="wtop" id="wtop" type="button" aria-label="回到頂端">↑</button>
+
+<!-- ====== Footer ====== -->
+<footer class="footer">
+  <div class="container footer__inner">
+    <div class="footer__brand">
+      <span class="footer__mark">湛</span>
+      <div>
+        <strong>湛智有限公司</strong>
+        <small>AI Business Coach ／ 棍子 林昆良 Bryce Lin</small>
+      </div>
+    </div>
+    <div class="footer__meta">
+      <small>© <span id="year"></span> 湛智有限公司 ZhanZhi Co., Ltd. All rights reserved.</small>
+      <small>陪伴你的團隊學會善用 AI，把時間用在真正有價值的事上。</small>
+    </div>
+  </div>
+</footer>
+
+<script src="journal-data.js?v=140"></script>
+<script src="testimonials-data.js?v=48"></script>
+<script>
+(function () {
+  'use strict';
+
+  const posts = typeof JOURNAL_POSTS !== 'undefined' ? JOURNAL_POSTS : [];
+  const testimonials = typeof TESTIMONIALS !== 'undefined' ? TESTIMONIALS : [];
+  const article = document.getElementById('warticle');
+
+  function esc(s) {
+    return String(s).replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;');
+  }
+  function fmtDate(d) { return d.replace(/-/g, '.'); }
+
+  /* ---------- TOC ---------- */
+  const headings = Array.from(article.querySelectorAll('h2[id]'));
+  const tocList = document.getElementById('wtocList');
+  headings.forEach(h => {
+    const li = document.createElement('li');
+    li.innerHTML = `<a href="#${h.id}">${esc(h.textContent)}</a>`;
+    tocList.appendChild(li);
+  });
+  const tocLinks = Array.from(tocList.querySelectorAll('a'));
+  function updateToc() {
+    let current = headings[0];
+    headings.forEach(h => { if (h.getBoundingClientRect().top < 140) current = h; });
+    tocLinks.forEach(a => a.classList.toggle('is-active', a.getAttribute('href') === '#' + current.id));
+    document.getElementById('wtop').classList.toggle('is-show', window.scrollY > 600);
+  }
+  window.addEventListener('scroll', updateToc, { passive: true });
+
+  /* ---------- Journal ---------- */
+  const sorted = posts.slice().sort((a, b) => b.date.localeCompare(a.date));
+  if (sorted.length) {
+    document.getElementById('jCount').textContent = sorted.length;
+    const first = sorted[sorted.length - 1].date.split('-');
+    document.getElementById('jSince').textContent = `${first[0]} 年 ${Number(first[1])} 月`;
+    document.getElementById('jList').innerHTML = sorted.slice(0, 8).map(p =>
+      `<li><span class="wlist__date">${fmtDate(p.date)}</span><a href="${esc(p.url)}" target="_blank" rel="noopener">${esc(p.title)}</a></li>`
+    ).join('');
+  }
+
+  /* ---------- Testimonials ---------- */
+  if (testimonials.length) {
+    document.getElementById('tCount').textContent = testimonials.length + ' 則';
+    document.getElementById('tList').innerHTML = testimonials.slice(0, 4).map(t => {
+      const text = t.text.length > 120 ? t.text.slice(0, 120) + '……' : t.text;
+      return `<blockquote class="wquote"><p>「${esc(text)}」</p><cite>── ${esc(t.name)}${t.role ? '，' + esc(t.role) : ''}</cite></blockquote>`;
+    }).join('');
+  }
+
+  /* ---------- Copy bio ---------- */
+  document.querySelectorAll('.wbio__copy').forEach(btn => {
+    btn.addEventListener('click', async () => {
+      const text = btn.closest('.wbio').querySelector('.wbio__text').textContent.trim();
+      try {
+        await navigator.clipboard.writeText(text);
+      } catch (e) {
+        const ta = document.createElement('textarea');
+        ta.value = text; document.body.appendChild(ta); ta.select();
+        try { document.execCommand('copy'); } catch (_) {}
+        ta.remove();
+      }
+      btn.textContent = '已複製 ✓';
+      btn.classList.add('is-done');
+      setTimeout(() => { btn.textContent = '複製'; btn.classList.remove('is-done'); }, 1600);
+    });
+  });
+
+  /* ---------- Search index ---------- */
+  const index = [];
+  headings.forEach((h, i) => {
+    const next = headings[i + 1];
+    let text = '';
+    let node = h.nextElementSibling;
+    while (node && node !== next) { text += ' ' + node.textContent; node = node.nextElementSibling; }
+    index.push({ type: '百科', title: h.textContent, text: text.replace(/\s+/g, ' ').trim(), href: '#' + h.id });
+  });
+  const infobox = article.querySelector('.winfobox');
+  index.push({ type: '百科', title: '基本資料', text: infobox.textContent.replace(/\s+/g, ' ').trim(), href: '#top-infobox' });
+  infobox.id = 'top-infobox';
+  sorted.forEach(p => index.push({
+    type: '日誌 ' + fmtDate(p.date), title: p.title, text: p.body.join(' '), href: p.url, ext: true
+  }));
+  testimonials.forEach(t => index.push({
+    type: '學員見證', title: t.name + (t.role ? '｜' + t.role : ''), text: t.text, href: t.url, ext: true
+  }));
+
+  const input = document.getElementById('wsearch');
+  const results = document.getElementById('wresults');
+
+  function snippet(text, terms) {
+    const lower = text.toLowerCase();
+    let pos = -1;
+    for (const t of terms) { pos = lower.indexOf(t); if (pos >= 0) break; }
+    const start = Math.max(0, pos - 30);
+    let s = (start > 0 ? '…' : '') + text.slice(start, start + 110) + (text.length > start + 110 ? '…' : '');
+    return highlight(s, terms);
+  }
+  function highlight(s, terms) {
+    let out = esc(s);
+    terms.forEach(t => {
+      const re = new RegExp(esc(t).replace(/[.*+?^${}()|[\]\\]/g, '\\$&'), 'gi');
+      out = out.replace(re, m => `<mark>${m}</mark>`);
+    });
+    return out;
+  }
+
+  function search(q) {
+    const terms = q.toLowerCase().split(/\s+/).filter(Boolean);
+    if (!terms.length) { results.classList.remove('is-open'); results.innerHTML = ''; return; }
+    const hits = index
+      .map(item => {
+        const title = item.title.toLowerCase();
+        const body = item.text.toLowerCase();
+        if (!terms.every(t => title.includes(t) || body.includes(t))) return null;
+        let score = item.type === '百科' ? 10 : 0;
+        terms.forEach(t => { if (title.includes(t)) score += 5; });
+        return { item, score };
+      })
+      .filter(Boolean)
+      .sort((a, b) => b.score - a.score)
+      .slice(0, 30);
+
+    results.innerHTML = hits.length
+      ? hits.map(({ item }) => `
+          <a class="wresults__item" href="${esc(item.href)}"${item.ext ? ' target="_blank" rel="noopener"' : ' data-internal="1"'}>
+            <span class="wresults__type">${esc(item.type)}${item.ext ? ' ↗' : ''}</span>
+            <span class="wresults__title">${highlight(item.title, terms)}</span>
+            <span class="wresults__snip">${snippet(item.text, terms)}</span>
+          </a>`).join('')
+      : `<div class="wresults__empty">找不到「${esc(q)}」相關內容，換個關鍵字試試。</div>`;
+    results.classList.add('is-open');
+  }
+
+  input.addEventListener('input', () => search(input.value.trim()));
+  input.addEventListener('keydown', e => {
+    if (e.key === 'Escape') { input.value = ''; search(''); }
+    if (e.key === 'Enter') {
+      const first = results.querySelector('.wresults__item');
+      if (first) first.click();
+    }
+  });
+  document.getElementById('wsearchHint').addEventListener('click', e => {
+    const b = e.target.closest('button');
+    if (!b) return;
+    input.value = b.dataset.q;
+    search(b.dataset.q);
+    input.focus();
+  });
+  results.addEventListener('click', e => {
+    const a = e.target.closest('a[data-internal]');
+    if (!a) return;
+    const target = document.querySelector(a.getAttribute('href'));
+    results.classList.remove('is-open');
+    if (target) {
+      target.classList.add('wflash');
+      setTimeout(() => target.classList.remove('wflash'), 1600);
+    }
+  });
+  document.addEventListener('click', e => {
+    if (!e.target.closest('.wsearch') && !e.target.closest('.wresults') && !e.target.closest('#wsearchHint')) {
+      results.classList.remove('is-open');
+    }
+  });
+  document.addEventListener('keydown', e => {
+    if (e.key === '/' && document.activeElement !== input) { e.preventDefault(); input.focus(); }
+  });
+
+  /* ---------- misc ---------- */
+  document.getElementById('wtop').addEventListener('click', () => window.scrollTo({ top: 0, behavior: 'smooth' }));
+  const navToggle = document.getElementById('navToggle');
+  const navLinks = document.querySelector('.nav__links');
+  if (navToggle && navLinks) {
+    navToggle.addEventListener('click', () => navLinks.classList.toggle('is-open'));
+  }
+  document.getElementById('year').textContent = new Date().getFullYear();
+
+  updateToc();
+})();
+</script>
+</body>
+</html>
