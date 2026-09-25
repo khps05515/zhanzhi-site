@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+<meta charset="UTF-8">
+<title>提案的本質：影響判斷</title>
+<link rel="stylesheet" href="style.css">
+<style>
+  .shift { display: grid; grid-template-columns: 1fr 90px 1fr; align-items: stretch; }
+  .pos { padding: 44px 46px; border-radius: 22px; }
+  .pos .tag { font-size: 22px; letter-spacing: 0.25em; }
+  .pos .word { font-family: 'Noto Serif TC', serif; font-weight: 900; font-size: 68px; margin-top: 10px; line-height: 1.2; }
+  .pos p { margin-top: 18px; font-size: 25px; line-height: 1.75; }
+  .pos.old { background: rgba(40,34,28,0.5); backdrop-filter: blur(18px); -webkit-backdrop-filter: blur(18px); border: 1px solid rgba(255,236,205,0.14); }
+  .pos.old .tag, .pos.old p { color: var(--cream-faint); }
+  .pos.old .word { color: rgba(247,239,226,0.55); text-decoration: line-through; text-decoration-thickness: 3px; text-decoration-color: var(--bad); }
+  .pos.new {
+    background: linear-gradient(140deg, rgba(28,42,74,0.9), rgba(20,28,52,0.82));
+    backdrop-filter: blur(18px); -webkit-backdrop-filter: blur(18px);
+    border: 1px solid rgba(226,195,139,0.5);
+    box-shadow: 0 24px 60px rgba(0,0,0,0.4), 0 0 0 6px rgba(226,195,139,0.08);
+  }
+  .pos.new .tag { color: var(--gold); }
+  .pos.new .word { color: var(--gold); }
+  .pos.new p { color: var(--cream); }
+  .arrow { display: grid; place-items: center; font-size: 54px; color: var(--gold); font-family: 'Cormorant Garamond', serif; }
+
+  .why { padding: 42px 48px; margin-top: 26px; }
+  .why h3 { font-family: 'Noto Serif TC', serif; font-size: 34px; font-weight: 900; color: var(--gold); }
+  .why p { margin-top: 16px; font-size: 25px; line-height: 1.85; color: var(--cream-dim); }
+
+  .h2 {
+    font-family: 'Noto Serif TC', serif; font-size: 36px; font-weight: 900; margin: 52px 0 22px;
+    display: flex; align-items: center; gap: 18px;
+  }
+  .h2::after { content: ''; flex: 1; height: 1px; background: linear-gradient(90deg, var(--line), transparent); }
+  .h2 .k { font-family: 'Cormorant Garamond', serif; font-style: italic; color: var(--gold); font-weight: 500; font-size: 30px; }
+
+  .grid2 { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; }
+  .tool { padding: 32px 36px; }
+  .tool h4 { font-size: 29px; font-weight: 700; display: flex; gap: 12px; align-items: baseline; }
+  .tool h4 b { font-family: 'Cormorant Garamond', serif; color: var(--gold); font-size: 34px; font-weight: 600; }
+  .tool p { margin-top: 12px; font-size: 23px; line-height: 1.75; color: var(--cream-dim); }
+
+  .metrics { display: grid; grid-template-columns: repeat(4, 1fr); gap: 16px; }
+  .m { padding: 28px 28px; position: relative; overflow: hidden; }
+  .m::before { content: ''; position: absolute; left: 0; top: 0; bottom: 0; width: 5px; background: var(--good); }
+  .m h4 { font-size: 28px; font-weight: 700; }
+  .m p { margin-top: 10px; font-size: 21px; color: var(--cream-dim); }
+  .m.off::before { background: var(--bad); }
+  .m.off { background: rgba(24,19,14,0.35); }
+  .m.off h4 { color: var(--cream-faint); text-decoration: line-through; text-decoration-color: var(--bad); }
+  .m.off p { color: var(--cream-faint); }
+
+  .verdict .note { margin-top: 20px; font-size: 24px; color: var(--cream-dim); }
+</style>
+</head>
+<body>
+<div class="poster">
+  <div class="frame"></div>
+
+  <div class="eyebrow"><span class="rule"></span>繽紛室內設計<span class="sep">｜</span>家飾部 AI 陪跑</div>
+  <h1>提案的本質：<em>影響判斷</em>，<br>不是預測選擇</h1>
+  <p class="subtitle">業主 AI 分身該站的位置──協助人去影響業主的判斷</p>
+
+  <div class="section-gap"></div>
+
+  <div class="shift">
+    <div class="pos old"><div class="tag">過去的定位</div><div class="word">預測</div><p>猜業主會選哪一個<br>→ 命中三成就算失敗</p></div>
+    <div class="arrow">⟶</div>
+    <div class="pos new"><div class="tag">新的定位</div><div class="word">影響</div><p>讓業主選得更快、更有把握<br>→ 懂業主在意什麼才是核心</p></div>
+  </div>
+
+  <div class="glass why">
+    <h3>為什麼這解釋了「理由對、選品錯」</h3>
+    <p>AI 已經做對最有價值的部分：<span class="hl">抓到業主在意什麼</span>（乾淨、不複雜、新穎、不要細碎）。這些理解正是說服業主的材料。上次奏效的「講清楚推薦哪個、為什麼」，本來就是影響，不是預測。</p>
+  </div>
+
+  <div class="h2"><span class="k">Tools</span>工具用法跟著變</div>
+  <div class="grid2">
+    <div class="glass tool"><h4><b>01</b>問法要換</h4><p>不問「業主會選哪個」，改問「我要推 C，他可能卡在哪？怎麼講他比較會買單？」</p></div>
+    <div class="glass tool"><h4><b>02</b>方案要收斂</h4><p>決定給業主看哪幾個、推薦哪一個、用什麼順序呈現</p></div>
+    <div class="glass tool"><h4><b>03</b>預演反對意見</h4><p>會前讓 AI 扮業主提出質疑，團隊先準備好回應</p></div>
+    <div class="glass tool"><h4><b>04</b>考量決策時機</h4><p>壁燈、吊燈要早定──提案時就讓業主理解為什麼現在要決定</p></div>
+  </div>
+
+  <div class="h2"><span class="k">Metrics</span>成效衡量也要改</div>
+  <div class="metrics">
+    <div class="glass m off"><h4>命中率</h4><p>舊指標，不再作為主要標準</p></div>
+    <div class="glass m"><h4>推薦採納率</h4><p>業主接受我們推薦的比例</p></div>
+    <div class="glass m"><h4>決策速度</h4><p>業主多久做出決定</p></div>
+    <div class="glass m"><h4>修改輪數</h4><p>來回調整幾次</p></div>
+  </div>
+
+  <div class="section-gap"></div>
+
+  <div class="verdict">
+    <div class="label">守住的原則</div>
+    <div class="big">幫業主更快做出<span style="color:var(--gold)">對他好的決定</span>，<br>而不是讓業主選我們想賣的</div>
+    <div class="note">會議記錄的角色也跟著升級：從「預測的訓練資料」變成「說服的彈藥庫」</div>
+  </div>
+
+  <div class="footer"><span class="mark">Interior · AI Companion</span><span><span class="brand">湛智</span>｜棍子教練</span></div>
+</div>
+</body>
+</html>
