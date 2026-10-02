@@ -667,6 +667,15 @@ button{font:inherit;cursor:pointer;border:0;background:transparent;color:inherit
   flex-shrink: 0;
 }
 .quote__fb:hover{ color: var(--gold) }
+.quote__src{
+  font-size: 12px;
+  color: rgba(255,255,255,.5);
+  flex-shrink: 0;
+  padding: 3px 9px;
+  border: 1px solid rgba(255,255,255,.18);
+  border-radius: 999px;
+  white-space: nowrap;
+}
 .quotes__morewrap{
   display:flex;justify-content:center;margin-top:26px;
 }

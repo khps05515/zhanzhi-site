@@ -225,7 +225,9 @@
         (isLong ? '<span class="quote__more">展開全文 ↓</span>' : '') +
         '<div class="quote__foot">' +
           '<div class="quote__who"><strong>' + escQ(t.name) + '</strong><small>' + escQ(t.role) + '</small></div>' +
-          '<a class="quote__fb" href="' + t.url + '" target="_blank" rel="noopener">FB 原文 ↗</a>' +
+          (t.url
+            ? '<a class="quote__fb" href="' + t.url + '" target="_blank" rel="noopener">FB 原文 ↗</a>'
+            : '<span class="quote__src">' + escQ(t.source || '學員回饋') + '</span>') +
         '</div>';
       if (isLong) {
         card.addEventListener('click', (e) => {
