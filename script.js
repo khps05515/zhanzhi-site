@@ -213,7 +213,7 @@
   if (quotesGrid && typeof TESTIMONIALS !== 'undefined') {
     const escQ = (s) => s.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;');
     const CLIP = 120;
-    const INITIAL = 9;
+    const INITIAL = 12;
 
     function buildQuoteCard(t) {
       const card = document.createElement('article');
