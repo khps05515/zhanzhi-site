@@ -546,7 +546,8 @@ button{font:inherit;cursor:pointer;border:0;background:transparent;color:inherit
   display:block;
 }
 /* Portrait video in showcase — vertical card, no crop */
-.show.is-portrait video{
+.show.is-portrait video,
+.show.is-portrait iframe{
   aspect-ratio: 9/16;
   object-fit: cover;
 }
