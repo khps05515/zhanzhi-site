@@ -976,7 +976,25 @@ button{font:inherit;cursor:pointer;border:0;background:transparent;color:inherit
   box-shadow: var(--shadow-lg);
   display:none;
 }
-.lightbox.is-video video{ display:block; width:100% }
+.lightbox.is-video video{
+  display:block;
+  width:auto;height:auto;
+  max-width:100%;
+  max-height: calc(100vh - 140px);
+  object-fit: contain;
+  background:#000;
+}
+/* 橫幅影片：撐滿寬度 */
+.lightbox.is-video.is-landscape video{ width: min(100%, calc((100vh - 140px) * 16 / 9)); height:auto }
+/* 直幅影片：以高度為準，寬度依比例，不裁切 */
+.lightbox.is-video.is-portrait video{
+  width: min(100%, calc((100vh - 140px) * 9 / 16));
+  height:auto;
+}
+.lightbox.is-video.is-square video{
+  width: min(100%, calc(100vh - 140px), 720px);
+  height:auto;
+}
 .lightbox.is-image img{ display:block }
 .lightbox__title{
   font-family:var(--font-display);font-size:18px;color:#fff;
@@ -1009,6 +1027,10 @@ button{font:inherit;cursor:pointer;border:0;background:transparent;color:inherit
 .lightbox__nav--prev{ left: 24px }
 .lightbox__nav--next{ right: 24px }
 @media (max-width: 720px){
+  .lightbox{ padding:64px 16px 24px }
+  .lightbox.is-video video{ max-height: calc(100vh - 120px) }
+  .lightbox.is-video.is-landscape video{ width: min(100%, calc((100vh - 120px) * 16 / 9)) }
+  .lightbox.is-video.is-portrait video{ width: min(100%, calc((100vh - 120px) * 9 / 16)) }
   .lightbox__nav{ width:44px; height:44px; font-size:28px }
   .lightbox__nav--prev{ left: 12px }
   .lightbox__nav--next{ right: 12px }
