@@ -996,6 +996,17 @@ button{font:inherit;cursor:pointer;border:0;background:transparent;color:inherit
   height:auto;
 }
 .lightbox.is-image img{ display:block }
+
+/* 全螢幕播放：取消卡片上的 cover 裁切與固定比例，直式影片完整顯示 */
+video:fullscreen,
+video:-webkit-full-screen{
+  width:100% !important;
+  height:100% !important;
+  aspect-ratio:auto !important;
+  object-fit:contain !important;
+  border-radius:0 !important;
+  background:#000;
+}
 .lightbox__title{
   font-family:var(--font-display);font-size:18px;color:#fff;
   text-align:center;margin:18px 0 0;
