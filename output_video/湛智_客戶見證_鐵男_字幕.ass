@@ -1,0 +1,48 @@
+[Script Info]
+ScriptType: v4.00+
+PlayResX: 720
+PlayResY: 1280
+WrapStyle: 2
+ScaledBorderAndShadow: yes
+
+[V4+ Styles]
+Format: Name, Fontname, Fontsize, PrimaryColour, SecondaryColour, OutlineColour, BackColour, Bold, Italic, Underline, StrikeOut, ScaleX, ScaleY, Spacing, Angle, BorderStyle, Outline, Shadow, Alignment, MarginL, MarginR, MarginV, Encoding
+Style: Sub,Noto Sans CJK TC Bold,46,&H00FFFFFF,&H000000FF,&H4A1B0F0A,&H80000000,0,0,0,0,100,100,0.5,0,1,3.2,1.2,2,40,40,250,1
+Style: Name,Noto Sans CJK TC Black,40,&H00FFFFFF,&H000000FF,&H00000000,&H00000000,0,0,0,0,100,100,0,0,1,0,0,1,0,0,0,1
+Style: Role,Noto Sans CJK TC Medium,26,&H00F0F6FF,&H000000FF,&H00000000,&H00000000,0,0,0,0,100,100,0.5,0,1,0,0,1,0,0,0,1
+Style: Tag,Noto Sans CJK TC Medium,24,&H00FFFFFF,&H000000FF,&H00000000,&H00000000,0,0,0,0,100,100,1,0,1,0,0,7,0,0,0,1
+Style: Shape,Arial,20,&H00FFFFFF,&H000000FF,&H00000000,&H00000000,0,0,0,0,100,100,0,0,1,0,0,7,0,0,0,1
+
+[Events]
+Format: Layer, Start, End, Style, Name, MarginL, MarginR, MarginV, Effect, Text
+Dialogue: 0,0:00:00.60,0:01:23.50,Shape,,0,0,0,,{\fad(400,400)\an7\pos(28,52)\1c&H3F1E0A&\1a&H38&\bord0\p1}m 14 0 l 256 0 b 264 0 270 6 270 14 l 270 34 b 270 42 264 48 256 48 l 14 48 b 6 48 0 42 0 34 l 0 14 b 0 6 6 0 14 0{\p0}
+Dialogue: 1,0:00:00.60,0:01:23.50,Tag,,0,0,0,,{\fad(400,400)\an7\pos(46,62)}湛智有限公司｜客戶見證
+Dialogue: 0,0:00:01.20,0:00:07.20,Shape,,0,0,0,,{\fad(250,350)\an7\pos(0,830)\1c&H8B4D1E&\bord0\p1}m 0 0 l 10 0 l 10 112 l 0 112{\p0}
+Dialogue: 0,0:00:01.20,0:00:07.20,Shape,,0,0,0,,{\fad(250,350)\an7\pos(10,830)\1c&H2D1B0F&\1a&H50&\bord0\p1}m 0 0 l 330 0 l 330 112 l 0 112{\p0}
+Dialogue: 1,0:00:01.30,0:00:07.20,Name,,0,0,0,,{\fad(250,350)\an7\pos(36,838)}鐵男
+Dialogue: 1,0:00:01.30,0:00:07.20,Role,,0,0,0,,{\fad(250,350)\an7\pos(36,892)}樂環實業 EcoJoy
+Dialogue: 2,0:00:00.95,0:00:05.00,Sub,,0,0,0,,{\fad(70,70)}Hello，我是{\c&H3DD9FF&\fs50}樂環實業 EcoJoy{\c&HFFFFFF&\fs46} 的鐵男
+Dialogue: 2,0:00:05.05,0:00:09.50,Sub,,0,0,0,,{\fad(70,70)}在這邊要跟大家推薦{\c&H3DD9FF&\fs50}湛智的棍子{\c&HFFFFFF&\fs46}
+Dialogue: 2,0:00:09.55,0:00:14.30,Sub,,0,0,0,,{\fad(70,70)}這是透過他的{\c&H3DD9FF&\fs50}輔導跟陪跑{\c&HFFFFFF&\fs46}
+Dialogue: 2,0:00:14.35,0:00:18.60,Sub,,0,0,0,,{\fad(70,70)}在我們這個新創的 EcoJoy 團隊裡面
+Dialogue: 2,0:00:18.65,0:00:20.75,Sub,,0,0,0,,{\fad(70,70)}創造了{\c&H3DD9FF&\fs50}很大的價值{\c&HFFFFFF&\fs46}
+Dialogue: 2,0:00:20.80,0:00:23.35,Sub,,0,0,0,,{\fad(70,70)}我們是一個{\c&H3DD9FF&\fs50}微型的團隊{\c&HFFFFFF&\fs46}
+Dialogue: 2,0:00:23.40,0:00:27.90,Sub,,0,0,0,,{\fad(70,70)}但是我覺得創造出來的效能
+Dialogue: 2,0:00:28.00,0:00:31.25,Sub,,0,0,0,,{\fad(70,70)}遠比原本團隊的大概 {\c&H3DD9FF&\fs50}5 倍{\c&HFFFFFF&\fs46}
+Dialogue: 2,0:00:31.30,0:00:33.10,Sub,,0,0,0,,{\fad(70,70)}至少有 {\c&H3DD9FF&\fs50}5 倍的效果{\c&HFFFFFF&\fs46}
+Dialogue: 2,0:00:33.30,0:00:37.95,Sub,,0,0,0,,{\fad(70,70)}包含透過 AI 去{\c&H3DD9FF&\fs50}釐清我們的思維{\c&HFFFFFF&\fs46}
+Dialogue: 2,0:00:38.00,0:00:40.90,Sub,,0,0,0,,{\fad(70,70)}跟 {\c&H3DD9FF&\fs50}Business Model 的修正{\c&HFFFFFF&\fs46}
+Dialogue: 2,0:00:41.10,0:00:45.45,Sub,,0,0,0,,{\fad(70,70)}還有小小團隊的一些行政事務
+Dialogue: 2,0:00:45.55,0:00:49.70,Sub,,0,0,0,,{\fad(70,70)}透過這些棍子教的 AI
+Dialogue: 2,0:00:49.75,0:00:53.40,Sub,,0,0,0,,{\fad(70,70)}可以{\c&H3DD9FF&\fs50}大大的降低{\c&HFFFFFF&\fs46}我們這些
+Dialogue: 2,0:00:53.45,0:00:56.90,Sub,,0,0,0,,{\fad(70,70)}{\c&H3DD9FF&\fs50}重複性事務的成本{\c&HFFFFFF&\fs46}
+Dialogue: 2,0:00:57.30,0:00:59.40,Sub,,0,0,0,,{\fad(70,70)}最直接的就是，這樣的事情
+Dialogue: 2,0:00:59.42,0:01:01.75,Sub,,0,0,0,,{\fad(70,70)}就{\c&H3DD9FF&\fs50}不用再去請一個助理小妹{\c&HFFFFFF&\fs46}
+Dialogue: 2,0:01:01.78,0:01:04.25,Sub,,0,0,0,,{\fad(70,70)}再去做一些很無聊的事情
+Dialogue: 2,0:01:04.30,0:01:06.15,Sub,,0,0,0,,{\fad(70,70)}然後這助理小妹又覺得
+Dialogue: 2,0:01:06.20,0:01:08.50,Sub,,0,0,0,,{\fad(70,70)}這個工作很無聊之類的
+Dialogue: 2,0:01:08.60,0:01:10.50,Sub,,0,0,0,,{\fad(70,70)}那這樣子透過 AI
+Dialogue: 2,0:01:10.75,0:01:15.10,Sub,,0,0,0,,{\fad(70,70)}我覺得可以讓團隊的{\c&H3DD9FF&\fs50}向心力更強大{\c&HFFFFFF&\fs46}
+Dialogue: 2,0:01:15.35,0:01:17.95,Sub,,0,0,0,,{\fad(70,70)}因為每個人都是做{\c&H3DD9FF&\fs50}更有價值的事情{\c&HFFFFFF&\fs46}
+Dialogue: 2,0:01:18.25,0:01:22.30,Sub,,0,0,0,,{\fad(70,70)}在這邊誠心的跟大家推薦{\c&H3DD9FF&\fs50}湛智的棍子{\c&HFFFFFF&\fs46}
+Dialogue: 2,0:01:22.55,0:01:23.52,Sub,,0,0,0,,{\fad(70,70)}謝謝
