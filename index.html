@@ -43,7 +43,7 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@300;400;500;700;900&family=Noto+Serif+TC:wght@500;700;900&family=Cormorant+Garamond:ital,wght@0,400;0,600;1,500&family=Space+Grotesk:wght@400;500;700&display=swap" rel="stylesheet">
 
-<link rel="stylesheet" href="styles.css?v=53" />
+<link rel="stylesheet" href="styles.css?v=54" />
 </head>
 <body>
 
@@ -656,7 +656,7 @@
   <button class="lightbox__nav lightbox__nav--prev" id="lightboxPrev" aria-label="上一張">‹</button>
   <button class="lightbox__nav lightbox__nav--next" id="lightboxNext" aria-label="下一張">›</button>
   <div class="lightbox__inner">
-    <video id="lightboxVideo" controls playsinline webkit-playsinline preload="auto"></video>
+    <div class="lightbox__player" id="lightboxPlayer"></div>
     <p class="lightbox__error" id="lightboxError" hidden></p>
     <img id="lightboxImage" alt="" />
     <p class="lightbox__title" id="lightboxTitle"></p>
@@ -665,6 +665,6 @@
 
 <script src="journal-data.js?v=160"></script>
 <script src="testimonials-data.js?v=51"></script>
-<script src="script.js?v=52"></script>
+<script src="script.js?v=53"></script>
 </body>
 </html>

@@ -85,7 +85,9 @@
 
   /* ---------- Lightbox (videos + image gallery) ---------- */
   const lightbox = document.getElementById('lightbox');
-  const lightboxVideo = document.getElementById('lightboxVideo');
+  const lightboxPlayer = document.getElementById('lightboxPlayer'); // 影片播放器容器（每次開啟建立全新 <video>）
+  let lightboxVideo = null;
+  let stallTimer = null;
   const lightboxImage = document.getElementById('lightboxImage');
   const lightboxTitle = document.getElementById('lightboxTitle');
   const lightboxClose = lightbox.querySelector('.lightbox__close');
@@ -116,9 +118,61 @@
     else if (r < 1.05) lightbox.classList.add('is-square');
     else lightbox.classList.add('is-landscape');
   }
-  lightboxVideo.addEventListener('loadedmetadata', () => {
-    setLightboxOrientation(lightboxVideo.videoWidth, lightboxVideo.videoHeight);
-  });
+  function showVideoHint(src, msg) {
+    lightboxError.innerHTML = msg + ' <a href="' + src + '" target="_blank" rel="noopener">直接開啟影片</a>。';
+    lightboxError.hidden = false;
+  }
+
+  function destroyLightboxVideo() {
+    if (stallTimer) { clearTimeout(stallTimer); stallTimer = null; }
+    if (!lightboxVideo) return;
+    try { lightboxVideo.pause(); } catch (e) {}
+    // 依 iOS 建議：清掉來源並 load()，讓 Safari 立刻釋放解碼器與網路連線
+    lightboxVideo.removeAttribute('src');
+    while (lightboxVideo.firstChild) lightboxVideo.removeChild(lightboxVideo.firstChild);
+    try { lightboxVideo.load(); } catch (e) {}
+    lightboxVideo.remove();
+    lightboxVideo = null;
+  }
+
+  function createLightboxVideo(src, poster) {
+    destroyLightboxVideo();
+    const v = document.createElement('video');
+    v.setAttribute('controls', '');
+    v.setAttribute('playsinline', '');
+    v.setAttribute('webkit-playsinline', '');
+    v.setAttribute('preload', 'auto');
+    v.setAttribute('x-webkit-airplay', 'allow');
+    if (poster) v.setAttribute('poster', poster);
+    const source = document.createElement('source');
+    source.src = src;
+    source.type = 'video/mp4';
+    v.appendChild(source);
+
+    v.addEventListener('loadedmetadata', () => {
+      setLightboxOrientation(v.videoWidth, v.videoHeight);
+      if (stallTimer) { clearTimeout(stallTimer); stallTimer = null; }
+      lightboxError.hidden = true;
+    });
+    const onError = () => {
+      if (!lightbox.classList.contains('is-video')) return;
+      showVideoHint(src, '影片載入失敗，請重新整理後再試，或');
+    };
+    v.addEventListener('error', onError);
+    source.addEventListener('error', onError);
+
+    // 讀取逾時提示：10 秒內連 metadata 都沒拿到，顯示直接開啟的連結（播放器保留，載入完成會自動消失）
+    stallTimer = setTimeout(() => {
+      stallTimer = null;
+      if (lightboxVideo === v && v.readyState < 1) {
+        showVideoHint(src, '影片讀取較慢，可以再等一下，或');
+      }
+    }, 10000);
+
+    lightboxPlayer.appendChild(v);
+    lightboxVideo = v;
+    return v;
+  }
 
   function openVideoLightbox(src, title, sourceVideo) {
     lightbox.classList.remove('is-image');
@@ -142,31 +196,22 @@
     lightboxTitle.textContent = title || '';
     // 先用卡片的封面當 poster，載入期間不會出現黑畫面
     const poster = (sourceVideo && sourceVideo.getAttribute('poster')) || '';
-    if (poster) lightboxVideo.setAttribute('poster', poster);
-    else lightboxVideo.removeAttribute('poster');
-    lightboxVideo.src = src;
-    lightboxVideo.load();
     lightbox.classList.add('is-open');
     lightbox.setAttribute('aria-hidden', 'false');
     document.body.style.overflow = 'hidden';
-    const p = lightboxVideo.play();
+    // 每次都建立全新的 <video>（iOS 重複使用同一個元素換 src 時，常會卡在讀取狀態）
+    const v = createLightboxVideo(src, poster);
+    const p = v.play();
     if (p && typeof p.catch === 'function') p.catch(() => {});
   }
-
-  lightboxVideo.addEventListener('error', () => {
-    if (!lightbox.classList.contains('is-video')) return;
-    const src = lightboxVideo.currentSrc || lightboxVideo.src;
-    lightboxError.innerHTML = '影片載入失敗，請重新整理後再試，或 <a href="' + src + '" target="_blank" rel="noopener">直接開啟影片</a>。';
-    lightboxError.hidden = false;
-  });
 
   function openImageLightbox(items, startIdx) {
     gallery = items;
     galleryIdx = startIdx;
     lightbox.classList.remove('is-video');
     lightbox.classList.add('is-image');
-    lightboxVideo.pause();
-    lightboxVideo.src = '';
+    destroyLightboxVideo();
+    lightboxError.hidden = true;
     renderGalleryFrame();
     lightbox.classList.add('is-open');
     lightbox.setAttribute('aria-hidden', 'false');
@@ -191,10 +236,7 @@
     lightbox.classList.remove('is-open', 'is-image', 'is-video', 'is-portrait', 'is-square', 'is-landscape');
     lightbox.setAttribute('aria-hidden', 'true');
     document.body.style.overflow = '';
-    lightboxVideo.pause();
-    lightboxVideo.removeAttribute('src');
-    lightboxVideo.removeAttribute('poster');
-    lightboxVideo.load();
+    destroyLightboxVideo();
     lightboxError.hidden = true;
     lightboxImage.src = '';
     gallery = [];
