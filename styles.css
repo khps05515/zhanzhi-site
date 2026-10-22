@@ -555,6 +555,20 @@ button{font:inherit;cursor:pointer;border:0;background:transparent;color:inherit
   aspect-ratio: 1/1;
   object-fit: cover;
 }
+/* 觸控裝置：卡片不帶原生控制列，改顯示播放鍵，點擊整張卡片開燈箱 */
+.show.is-tap{ cursor:pointer }
+.show.is-tap .show__frame{ position:relative }
+.show.is-tap .show__frame::after{
+  content:"";
+  position:absolute;left:50%;top:50%;
+  width:64px;height:64px;margin:-32px 0 0 -32px;
+  border-radius:50%;
+  background:rgba(0,0,0,.45) url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath fill='%23fff' d='M8 5v14l11-7z'/%3E%3C/svg%3E") center/32px no-repeat;
+  border:2px solid rgba(255,255,255,.85);
+  pointer-events:none;
+}
+.show.is-tap video{ pointer-events:none }
+.show.is-tap:hover{ transform:none }
 .show figcaption{
   padding:16px 20px 20px;
   display:flex;flex-direction:column;gap:4px;
@@ -957,10 +971,11 @@ button{font:inherit;cursor:pointer;border:0;background:transparent;color:inherit
    ================================================= */
 .lightbox{
   position:fixed;inset:0;z-index:100;
-  background:rgba(6,19,46,.96);
-  backdrop-filter:blur(8px);
+  background:rgba(6,19,46,.97);
+  /* 注意：不要在這裡加 backdrop-filter — iOS/Safari 會讓內部 <video> 渲染成黑畫面 */
   display:none;align-items:center;justify-content:center;
   padding:40px;
+  -webkit-overflow-scrolling:touch;
 }
 .lightbox.is-open{display:flex}
 .lightbox__inner{
@@ -1012,6 +1027,11 @@ video:-webkit-full-screen{
   text-align:center;margin:18px 0 0;
   min-height: 24px;
 }
+.lightbox__error{
+  margin:12px 0 0;font-size:14px;color:#ffd9d9;text-align:center;
+}
+.lightbox__error a{ color:#fff;text-decoration:underline }
+.lightbox__error[hidden]{ display:none }
 .lightbox__close{
   position:fixed;top:20px;right:24px;
   width:48px;height:48px;border-radius:50%;

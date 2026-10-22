@@ -91,6 +91,19 @@
   const lightboxClose = lightbox.querySelector('.lightbox__close');
   const lightboxPrev = document.getElementById('lightboxPrev');
   const lightboxNext = document.getElementById('lightboxNext');
+  const lightboxError = document.getElementById('lightboxError');
+  const heroVideo = document.querySelector('.hero__video');
+
+  // 觸控裝置（手機 / 平板）：影片統一在燈箱內以單一播放器播放，
+  // 避免 iOS Safari 因頁面上同時存在多個 <video> 而無法解碼（黑屏）。
+  const isTouch = window.matchMedia('(hover: none) and (pointer: coarse)').matches;
+
+  function pauseAllPageVideos() {
+    document.querySelectorAll('video').forEach((v) => {
+      if (v === lightboxVideo) return;
+      try { v.pause(); } catch (e) {}
+    });
+  }
 
   let gallery = [];   // array of {src, alt} for image gallery mode
   let galleryIdx = 0;
@@ -121,14 +134,31 @@
     } else {
       setLightboxOrientation(16, 9);
     }
-    lightboxVideo.src = src;
+    // 釋放其他播放器（含首頁背景影片），iOS 才有足夠解碼資源播放燈箱影片
+    pauseAllPageVideos();
+    lightboxError.hidden = true;
+    lightboxError.textContent = '';
     lightboxImage.src = '';
     lightboxTitle.textContent = title || '';
+    // 先用卡片的封面當 poster，載入期間不會出現黑畫面
+    const poster = (sourceVideo && sourceVideo.getAttribute('poster')) || '';
+    if (poster) lightboxVideo.setAttribute('poster', poster);
+    else lightboxVideo.removeAttribute('poster');
+    lightboxVideo.src = src;
+    lightboxVideo.load();
     lightbox.classList.add('is-open');
     lightbox.setAttribute('aria-hidden', 'false');
     document.body.style.overflow = 'hidden';
-    lightboxVideo.play().catch(() => {});
+    const p = lightboxVideo.play();
+    if (p && typeof p.catch === 'function') p.catch(() => {});
   }
+
+  lightboxVideo.addEventListener('error', () => {
+    if (!lightbox.classList.contains('is-video')) return;
+    const src = lightboxVideo.currentSrc || lightboxVideo.src;
+    lightboxError.innerHTML = '影片載入失敗，請重新整理後再試，或 <a href="' + src + '" target="_blank" rel="noopener">直接開啟影片</a>。';
+    lightboxError.hidden = false;
+  });
 
   function openImageLightbox(items, startIdx) {
     gallery = items;
@@ -162,9 +192,13 @@
     lightbox.setAttribute('aria-hidden', 'true');
     document.body.style.overflow = '';
     lightboxVideo.pause();
-    lightboxVideo.src = '';
+    lightboxVideo.removeAttribute('src');
+    lightboxVideo.removeAttribute('poster');
+    lightboxVideo.load();
+    lightboxError.hidden = true;
     lightboxImage.src = '';
     gallery = [];
+    if (heroVideo && heroVideo.paused) heroVideo.play().catch(() => {});
   }
 
   lightboxClose.addEventListener('click', closeLightbox);
@@ -187,8 +221,21 @@
     const video = fig.querySelector('video');
     const title = fig.dataset.title || '';
     if (!video) return;
+    if (isTouch) {
+      // 手機：卡片只顯示封面與播放鍵，點任何位置都開燈箱播放
+      video.removeAttribute('controls');
+      video.setAttribute('preload', 'none');
+      // 把影片包進一層容器，播放鍵才能正確置中在影片上（而非整張卡片）
+      const frame = document.createElement('div');
+      frame.className = 'show__frame';
+      video.parentNode.insertBefore(frame, video);
+      frame.appendChild(video);
+      fig.classList.add('is-tap');
+      fig.setAttribute('role', 'button');
+      fig.setAttribute('aria-label', '播放：' + title);
+    }
     fig.addEventListener('click', (e) => {
-      if (e.target.tagName === 'VIDEO') return; // allow native controls
+      if (!isTouch && e.target.tagName === 'VIDEO') return; // 桌機：保留原生控制列
       e.preventDefault();
       const src = video.querySelector('source')?.src || video.src;
       openVideoLightbox(src, title, video);
