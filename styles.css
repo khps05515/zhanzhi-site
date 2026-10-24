@@ -811,7 +811,7 @@ button{font:inherit;cursor:pointer;border:0;background:transparent;color:inherit
 }
 .brands__track{
   display:flex;gap:14px;width:max-content;
-  animation: marquee 60s linear infinite;
+  animation: marquee 130s linear infinite;
 }
 .brands__track span{
   flex-shrink:0;
